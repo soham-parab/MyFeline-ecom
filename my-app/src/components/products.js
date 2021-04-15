@@ -34,14 +34,7 @@ export function ProductListing() {
                   <div className="cartDiv">
                      <button
                         className="cartButton"
-                        onClick={() =>
-                           setItemsInCart((prd) => [
-                              ...prd,
-                              item.name,
-                              item.price,
-                              item.image,
-                           ])
-                        }
+                        onClick={() => setItemsInCart((prd) => [...prd, item])}
                      >
                         Add to Cart
                      </button>
@@ -50,11 +43,7 @@ export function ProductListing() {
                      <button
                         className="wishListButton"
                         onClick={() =>
-                           setItemsInWishlist((prd) => [
-                              ...prd,
-                              item.name,
-                              item.price,
-                           ])
+                           setItemsInWishlist((prd) => [...prd, item])
                         }
                      >
                         Add to Wishlist

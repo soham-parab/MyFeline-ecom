@@ -10,7 +10,9 @@ export function Cart() {
          {itemsInCart.map((items) => {
             return (
                <div>
-                  <h1>{items}</h1>
+                  <img src={items.image} alt = "error"></img>
+                  <h1>{items.name}</h1>
+                  <h1>{items.price}</h1>
                </div>
             );
          })}

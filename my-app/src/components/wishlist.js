@@ -8,7 +8,13 @@ export function Wishlist() {
     return (
        <div>
           {itemsInWishlist.map((items) => {
-             return <h1>{items}</h1>;
+             return <div>
+                <img src = {items.image} alt = "error"></img>
+                <p><b>{items.name}</b></p>
+                <p>{items.price}</p>
+
+
+                </div>
           })}
        </div>
     );
