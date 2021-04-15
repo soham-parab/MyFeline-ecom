@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useState, useReducer } from "react";
-import { useProduct } from "../contexts/product-context";
+import { useProduct } from "../contexts/ProductsContext";
 import axios from "axios";
-import { useCart } from "../contexts/cart-context";
-import { useWishlist } from "../contexts/wishlist-context";
+import { useCart } from "../contexts/CartContext";
+import { useWishlist } from "../contexts/WishlistContext";
 
 import "./components.css"
 
 export function ProductListing(){
+    return null
 
-    
+
 }
