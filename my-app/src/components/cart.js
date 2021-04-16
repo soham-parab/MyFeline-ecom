@@ -3,9 +3,8 @@ import { useState, useReducer } from "react";
 import { useCart } from "../contexts/CartContext";
 
 const removeItemFromCart = (cartItems, itemToBeRemoved) => {
-   return cartItems.filter((item)=> item.id !==itemToBeRemoved.id)
+   return cartItems.filter((item) => item.id !== itemToBeRemoved.id);
 };
-
 
 export function Cart() {
    const reducerFunction = (state, action) => {
@@ -20,19 +19,33 @@ export function Cart() {
                ),
             };
          case "DECREMENT":
-            return {
-               ...state,
-               itemsInCart: state.itemsInCart.map((item) =>
-                  item.id === action.payload.id
-                     ? { ...item, qty: item.qty - 1 }
-                     : item
-               ),
-            };
-            
+            return (action.payload.qty - 1 === 0)
+               ? {
+                    ...state,
+                    itemsInCart: removeItemFromCart(
+                       state.itemsInCart,
+                       action.payload
+                    ),
+                 }
+               : {
+                    ...state,
+                    itemsInCart: state.itemsInCart.map((item) =>
+                       item.id === action.payload.id
+                          ? { ...item, qty: item.qty - 1 }
+                          : item
+                    ),
+                 };
+
          case "MOVE TO WISHLIST":
             return null;
          case "DELETE FROM CART":
-            return {...state, itemsInCart:removeItemFromCart(state.itemsInCart,action.payload)}
+            return {
+               ...state,
+               itemsInCart: removeItemFromCart(
+                  state.itemsInCart,
+                  action.payload
+               ),
+            };
          default:
             break;
       }
