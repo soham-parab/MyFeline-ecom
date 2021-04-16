@@ -15,7 +15,15 @@ export function Cart() {
                ),
             };
          case "DECREMENT":
-            return null;
+            return {
+               ...state,
+               itemsInCart: state.itemsInCart.map((item) =>
+                  item.id === action.payload.id
+                     ? { ...item, qty: item.qty - 1 }
+                     : item
+               ),
+            };
+
          case "MOVE TO WISHLIST":
             return null;
          case "DELETE FROM CART":
