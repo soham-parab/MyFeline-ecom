@@ -9,8 +9,9 @@ import "./components.css";
 
 export function ProductListing() {
    const { products, setProducts } = useProduct();
-   const { setItemsInCart } = useCart();
-   const { setItemsInWishlist } = useWishlist();
+   const { itemsInCart, setItemsInCart } = useCart();
+   const { itemsInWishlist, setItemsInWishlist } = useWishlist();
+
    useEffect(() => {
       (async function () {
          const productData = await axios.get("../api/products");
@@ -31,6 +32,7 @@ export function ProductListing() {
                      alt="nothing"
                   ></img>
                   <p className="itemPrice">{item.price}</p>
+
                   <div className="cartDiv">
                      <button
                         className="cartButton"

@@ -26,6 +26,8 @@ export default function setupMockServer() {
           name: faker.commerce.productName(),
           image: faker.random.image(),
           price: faker.commerce.price(),
+          in_stock: faker.random.boolean(),
+          fast_delivery: faker.random.boolean(),
           qty: 1
         });
       });
