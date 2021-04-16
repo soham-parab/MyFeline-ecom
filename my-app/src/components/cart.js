@@ -1,12 +1,12 @@
 import react from "react";
 import { useState, useReducer } from "react";
 import { useCart } from "../contexts/CartContext";
-
-const removeItemFromCart = (cartItems, itemToBeRemoved) => {
-   return cartItems.filter((item) => item.id !== itemToBeRemoved.id);
-};
+import { useWishlist } from "../contexts/WishlistContext";
 
 export function Cart() {
+   const { itemsInCart, setItemsInCart } = useCart();
+   const { itemsInWishlist, setItemsInWishlist } = useWishlist();
+
    const reducerFunction = (state, action) => {
       switch (action.type) {
          case "INCREMENT":
@@ -51,20 +51,24 @@ export function Cart() {
       }
    };
 
-   const { itemsInCart, setItemsInCart } = useCart();
+   const removeItemFromCart = (cartItems, itemToBeRemoved) => {
+      return cartItems.filter((item) => item.id !== itemToBeRemoved.id);
+   };
+
    const [value, dispatch] = useReducer(reducerFunction, {
       itemsInCart,
+      itemsInWishlist,
    });
-
+   setItemsInCart(value.itemsInCart);
    return (
       <div>
-         {value.itemsInCart.map((item) => {
+         {itemsInCart.map((item) => {
             return (
-               <div>
+               <div style={{ padding: " 1 rem" }}>
                   <img src={item.image} alt="error"></img>
                   <h1>{item.name}</h1>
                   <h1>{item.price}</h1>
-
+                  <p>wjadisd</p>
                   <button
                      className="button"
                      onClick={() => {

@@ -24,12 +24,12 @@ export function ProductListing() {
          <h1>Products!</h1>
          {products.map((item) => {
             return (
-               <div key={item.id}>
+               <div key={item.id} style={{ padding: " 1 rem" }}>
                   <p className="productName">{item.name}</p>
                   <img
                      className="productImage"
                      src={item.image}
-                     alt="nothing"
+                     alt="error"
                   ></img>
                   <p className="itemPrice">{item.price}</p>
 
