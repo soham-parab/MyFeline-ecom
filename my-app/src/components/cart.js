@@ -19,7 +19,7 @@ export function Cart() {
                ),
             };
          case "DECREMENT":
-            return (action.payload.qty - 1 === 0)
+            return action.payload.qty - 1 === 0
                ? {
                     ...state,
                     itemsInCart: removeItemFromCart(
