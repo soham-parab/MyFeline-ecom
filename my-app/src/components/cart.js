@@ -2,6 +2,11 @@ import react from "react";
 import { useState, useReducer } from "react";
 import { useCart } from "../contexts/CartContext";
 
+const removeItemFromCart = (cartItems, itemToBeRemoved) => {
+   return cartItems.filter((item)=> item.id !==itemToBeRemoved.id)
+};
+
+
 export function Cart() {
    const reducerFunction = (state, action) => {
       switch (action.type) {
@@ -23,11 +28,11 @@ export function Cart() {
                      : item
                ),
             };
-
+            
          case "MOVE TO WISHLIST":
             return null;
          case "DELETE FROM CART":
-            return null;
+            return {...state, itemsInCart:removeItemFromCart(state.itemsInCart,action.payload)}
          default:
             break;
       }
