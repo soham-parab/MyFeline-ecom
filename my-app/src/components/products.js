@@ -1,17 +1,9 @@
 import { useEffect } from "react";
-// import { useState, useReducer } from "react";
-// import { useProduct } from "../contexts/ProductsContext";
 import axios from "axios";
-// import { useCart } from "../contexts/CartContext";
-// import { useWishlist } from "../contexts/WishlistContext";
 import { useProducts } from "../contexts/ProductContext";
-
 import "./components.css";
 
 export function ProductListing() {
-   // const { products, setProducts } = useProduct();
-   // const { itemsInCart, setItemsInCart } = useCart();
-   // const { itemsInWishlist, setItemsInWishlist } = useWishlist();
    const { state, dispatch } = useProducts();
 
    useEffect(() => {
