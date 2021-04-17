@@ -28,6 +28,18 @@ export function Wishlist() {
                   >
                      Remove from Wishlist
                   </button>
+
+
+                  <button
+                     onClick={() => {
+                        dispatch({
+                           type: "MOVE TO CART",
+                           payload: item,
+                        });
+                     }}
+                  >
+                     Move to Cart
+                  </button>
                </div>
             );
          })}

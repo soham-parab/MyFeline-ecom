@@ -35,7 +35,19 @@ const reducerFunction = (acc, action) => {
       case "ADD TO CART":
          return { ...acc, cart: [...acc.cart, action.payload] };
       case "ADD TO WISHLIST":
-         return {...acc,wishlist:[...acc.wishlist,action.payload]}
+         return { ...acc, wishlist: [...acc.wishlist, action.payload] };
+
+      case "MOVE TO WISHLIST":
+         return null;
+      case "DELETE FROM CART":
+         return { ...acc, cart: removeItemFromList(acc.cart, action.payload) };
+      case "DELETE FROM WISHLIST":
+         return {
+            ...acc,
+            wishlist: removeItemFromList(acc.wishlist, action.payload),
+         };
+      case "MOVE TO CART":
+         return null;
       case "INCREMENT":
          return {
             ...acc,
@@ -47,27 +59,21 @@ const reducerFunction = (acc, action) => {
          };
 
       case "DECREMENT":
-         return {
-            ...acc,
-            cart: acc.cart.map((item) =>
-               item.id === action.payload.id
-                  ? { ...item, qty: action.payload.qty - 1 }
-                  : item
-            ),
-         };
-      case "MOVE TO WISHLIST":
-         return null;
-      case "DELETE FROM CART":
-
-         return {...acc,cart:removeItemFromList(acc.cart,action.payload)}
-      case "DELETE FROM WISHLIST":
-         return {...acc,wishlist:removeItemFromList(acc.wishlist,action.payload)}
+         return action.payload.qty - 1 === 0
+            ? { ...acc, cart: removeItemFromList(acc.cart, action.payload) }
+            : {
+                 ...acc,
+                 cart: acc.cart.map((item) =>
+                    item.id === action.payload.id
+                       ? { ...item, qty: action.payload.qty - 1 }
+                       : item
+                 ),
+              };
 
       default:
          break;
    }
 };
-
 
 const removeItemFromList = (listItems, itemToBeRemoved) => {
    return listItems.filter((item) => item.id !== itemToBeRemoved.id);

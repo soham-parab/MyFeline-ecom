@@ -1,26 +1,12 @@
 import react from "react";
 import { useState, useReducer } from "react";
-// import { useCart } from "../contexts/CartContext";
 import { useProducts } from "../contexts/ProductContext";
-// import { useWishlist } from "../contexts/WishlistContext";
+
 
 export function Cart() {
-   // const { itemsInCart, setItemsInCart } = useCart();
-   // const { itemsInWishlist, setItemsInWishlist } = useWishlist();
-
    const { state, dispatch } = useProducts();
 
-   // const reducerFunction = (state, action) => {
-   //    switch (action.type) {
-   //       case "INCREMENT":
-   //          return {
-   //             ...state,
-   //             itemsInCart: state.itemsInCart.map((item) =>
-   //                item.id === action.payload.id
-   //                   ? { ...item, qty: item.qty + 1 }
-   //                   : item
-   //             ),
-   //          };
+  
    //       case "DECREMENT":
    //          return action.payload.qty - 1 === 0
    //             ? {
@@ -54,11 +40,7 @@ export function Cart() {
    //    }
    // };
 
-   // const [value, dispatch] = useReducer(reducerFunction, {
-   //    itemsInCart,
-   //    itemsInWishlist,
-   // });
-   // setItemsInCart(value.itemsInCart);
+  
    return (
       <div>
          {state.cart.map((item) => {
