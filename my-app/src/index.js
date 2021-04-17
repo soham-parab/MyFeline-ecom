@@ -3,21 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import setupMockServer from "../src/api/mock-server";
-import { CartProvider } from "./contexts/CartContext";
-import { ProductProvider } from "./contexts/ProductsContext";
-import { WishlistProvider } from "./contexts/WishlistContext";
+import { ProductsProvider } from "./contexts/ProductContext";
 
 setupMockServer();
 
 ReactDOM.render(
    <React.StrictMode>
-      <ProductProvider>
-         <CartProvider>
-            <WishlistProvider>
-               <App />
-            </WishlistProvider>
-         </CartProvider>
-      </ProductProvider>
+      <ProductsProvider>
+         <App />
+      </ProductsProvider>
    </React.StrictMode>,
    document.getElementById("root")
 );

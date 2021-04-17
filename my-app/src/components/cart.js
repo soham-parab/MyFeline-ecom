@@ -1,68 +1,67 @@
 import react from "react";
 import { useState, useReducer } from "react";
-import { useCart } from "../contexts/CartContext";
-import { useWishlist } from "../contexts/WishlistContext";
+// import { useCart } from "../contexts/CartContext";
+import { useProducts } from "../contexts/ProductContext";
+// import { useWishlist } from "../contexts/WishlistContext";
 
 export function Cart() {
-   const { itemsInCart, setItemsInCart } = useCart();
-   const { itemsInWishlist, setItemsInWishlist } = useWishlist();
+   // const { itemsInCart, setItemsInCart } = useCart();
+   // const { itemsInWishlist, setItemsInWishlist } = useWishlist();
 
-   const reducerFunction = (state, action) => {
-      switch (action.type) {
-         case "INCREMENT":
-            return {
-               ...state,
-               itemsInCart: state.itemsInCart.map((item) =>
-                  item.id === action.payload.id
-                     ? { ...item, qty: item.qty + 1 }
-                     : item
-               ),
-            };
-         case "DECREMENT":
-            return action.payload.qty - 1 === 0
-               ? {
-                    ...state,
-                    itemsInCart: removeItemFromCart(
-                       state.itemsInCart,
-                       action.payload
-                    ),
-                 }
-               : {
-                    ...state,
-                    itemsInCart: state.itemsInCart.map((item) =>
-                       item.id === action.payload.id
-                          ? { ...item, qty: item.qty - 1 }
-                          : item
-                    ),
-                 };
+   const { state, dispatch } = useProducts();
 
-         case "MOVE TO WISHLIST":
-            return null;
-         case "DELETE FROM CART":
-            return {
-               ...state,
-               itemsInCart: removeItemFromCart(
-                  state.itemsInCart,
-                  action.payload
-               ),
-            };
-         default:
-            break;
-      }
-   };
+   // const reducerFunction = (state, action) => {
+   //    switch (action.type) {
+   //       case "INCREMENT":
+   //          return {
+   //             ...state,
+   //             itemsInCart: state.itemsInCart.map((item) =>
+   //                item.id === action.payload.id
+   //                   ? { ...item, qty: item.qty + 1 }
+   //                   : item
+   //             ),
+   //          };
+   //       case "DECREMENT":
+   //          return action.payload.qty - 1 === 0
+   //             ? {
+   //                  ...state,
+   //                  itemsInCart: removeItemFromCart(
+   //                     state.itemsInCart,
+   //                     action.payload
+   //                  ),
+   //               }
+   //             : {
+   //                  ...state,
+   //                  itemsInCart: state.itemsInCart.map((item) =>
+   //                     item.id === action.payload.id
+   //                        ? { ...item, qty: item.qty - 1 }
+   //                        : item
+   //                  ),
+   //               };
 
-   const removeItemFromCart = (cartItems, itemToBeRemoved) => {
-      return cartItems.filter((item) => item.id !== itemToBeRemoved.id);
-   };
+   //       case "MOVE TO WISHLIST":
+   //          return null;
+   //       case "DELETE FROM CART":
+   //          return {
+   //             ...state,
+   //             itemsInCart: removeItemFromCart(
+   //                state.itemsInCart,
+   //                action.payload
+   //             ),
+   //          };
+   //       default:
+   //          break;
+   //    }
+   // };
 
-   const [value, dispatch] = useReducer(reducerFunction, {
-      itemsInCart,
-      itemsInWishlist,
-   });
-   setItemsInCart(value.itemsInCart);
+   // const [value, dispatch] = useReducer(reducerFunction, {
+   //    itemsInCart,
+   //    itemsInWishlist,
+   // });
+   // setItemsInCart(value.itemsInCart);
    return (
       <div>
-         {itemsInCart.map((item) => {
+         {state.cart.map((item) => {
             return (
                <div style={{ padding: " 1 rem" }}>
                   <img src={item.image} alt="error"></img>
