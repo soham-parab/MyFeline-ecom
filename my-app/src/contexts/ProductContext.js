@@ -37,8 +37,13 @@ const reducerFunction = (acc, action) => {
       case "ADD TO WISHLIST":
          return { ...acc, wishlist: [...acc.wishlist, action.payload] };
 
-      case "MOVE TO WISHLIST":
-         return null;
+      case "MOVE TO WISHLIST FROM CART":
+         return {
+            ...acc,
+            wishlist: [...acc.wishlist, action.payload],
+            cart: removeItemFromList(acc.cart, action.payload),
+         };
+
       case "DELETE FROM CART":
          return { ...acc, cart: removeItemFromList(acc.cart, action.payload) };
       case "DELETE FROM WISHLIST":
@@ -46,8 +51,12 @@ const reducerFunction = (acc, action) => {
             ...acc,
             wishlist: removeItemFromList(acc.wishlist, action.payload),
          };
-      case "MOVE TO CART":
-         return null;
+      case "MOVE TO CART FROM WISHLIST":
+         return {
+            ...acc,
+            cart: [...acc.cart, action.payload],
+            wishlist: removeItemFromList(acc.wishlist, action.payload),
+         };
       case "INCREMENT":
          return {
             ...acc,

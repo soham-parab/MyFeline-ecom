@@ -16,13 +16,15 @@ export function ProductListing() {
 
    useEffect(() => {
       (async function () {
-         try{
-         const productData = await axios.get("../api/products");
-         // setProducts(productData.data.products);
-         dispatch({ type: "SET PRODUCTS", payload: productData.data.products });
-         }
-         catch(error) {
-         dispatch({type : "LOADING" , payload : false})
+         try {
+            const productData = await axios.get("../api/products");
+            // setProducts(productData.data.products);
+            dispatch({
+               type: "SET PRODUCTS",
+               payload: productData.data.products,
+            });
+         } catch (error) {
+            dispatch({ type: "LOADING", payload: false });
          }
       })();
    }, []);
@@ -42,10 +44,24 @@ export function ProductListing() {
                   <p className="itemPrice">{item.price}</p>
 
                   <div className="cartDiv">
-                     <button onClick = {() => {dispatch({type : "ADD TO CART", payload:item})}}className="cartButton">Add to Cart</button>
+                     <button
+                        onClick={() => {
+                           dispatch({ type: "ADD TO CART", payload: item });
+                        }}
+                        className="cartButton"
+                     >
+                        Add to Cart
+                     </button>
                   </div>
                   <div className="wishListDiv">
-                     <button onClick = {() => {dispatch({type : "ADD TO WISHLIST", payload:item})}}className="wishListButton">Add to Wishlist</button>
+                     <button
+                        onClick={() => {
+                           dispatch({ type: "ADD TO WISHLIST", payload: item });
+                        }}
+                        className="wishListButton"
+                     >
+                        Add to Wishlist
+                     </button>
                   </div>
                </div>
             );

@@ -29,11 +29,10 @@ export function Wishlist() {
                      Remove from Wishlist
                   </button>
 
-
                   <button
                      onClick={() => {
                         dispatch({
-                           type: "MOVE TO CART",
+                           type: "MOVE TO CART FROM WISHLIST",
                            payload: item,
                         });
                      }}

@@ -2,45 +2,9 @@ import react from "react";
 import { useState, useReducer } from "react";
 import { useProducts } from "../contexts/ProductContext";
 
-
 export function Cart() {
    const { state, dispatch } = useProducts();
 
-  
-   //       case "DECREMENT":
-   //          return action.payload.qty - 1 === 0
-   //             ? {
-   //                  ...state,
-   //                  itemsInCart: removeItemFromCart(
-   //                     state.itemsInCart,
-   //                     action.payload
-   //                  ),
-   //               }
-   //             : {
-   //                  ...state,
-   //                  itemsInCart: state.itemsInCart.map((item) =>
-   //                     item.id === action.payload.id
-   //                        ? { ...item, qty: item.qty - 1 }
-   //                        : item
-   //                  ),
-   //               };
-
-   //       case "MOVE TO WISHLIST":
-   //          return null;
-   //       case "DELETE FROM CART":
-   //          return {
-   //             ...state,
-   //             itemsInCart: removeItemFromCart(
-   //                state.itemsInCart,
-   //                action.payload
-   //             ),
-   //          };
-   //       default:
-   //          break;
-   //    }
-   // };
-
-  
    return (
       <div>
          {state.cart.map((item) => {
@@ -70,7 +34,10 @@ export function Cart() {
 
                   <button
                      onClick={() =>
-                        dispatch({ type: "MOVE TO WISHLIST", payload: item })
+                        dispatch({
+                           type: "MOVE TO WISHLIST FROM CART",
+                           payload: item,
+                        })
                      }
                   >
                      Move to Wishlist
