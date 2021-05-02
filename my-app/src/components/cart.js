@@ -1,5 +1,5 @@
 import { useProducts } from "../contexts/ProductContext";
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 import "./cart.css";
 import { FaPlus, FaMinus } from "react-icons/fa";
@@ -11,9 +11,7 @@ export function Cart() {
    useEffect(() => {
       (async function () {
          try {
-            const productData = await axios.get(
-               "http://localhost:3500/cart"
-            );
+            const productData = await axios.get("http://localhost:3500/cart");
             console.log(productData);
 
             dispatch({
@@ -30,7 +28,7 @@ export function Cart() {
       <div className="cart-parent">
          <div className="card-holder">
             {state.cart.map((item) => {
-               console.log(item)
+               console.log(item);
                return (
                   <div>
                      <div className="horizCardParent">
@@ -93,8 +91,6 @@ export function Cart() {
                         </div>
                      </div>
                   </div>
-
-                  
                );
             })}
          </div>

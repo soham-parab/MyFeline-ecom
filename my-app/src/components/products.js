@@ -16,7 +16,6 @@ export function ProductListing() {
             const productData = await axios.get(
                "http://localhost:3500/products"
             );
-            console.log(productData);
 
             dispatch({
                type: "SET PRODUCTS",

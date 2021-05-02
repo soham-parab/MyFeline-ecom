@@ -45,11 +45,42 @@ const reducerFunction = (acc, action) => {
          };
       case "SET CART":
          return { ...acc, cart: action.payload };
+      case "SET WISHLIST":
+         return { ...acc, wishlist: action.payload };
+      
 
       case "ADD TO CART":
-         return axios
+         axios
             .post("http://localhost:3500/cart", {
-               name: "test",
+               name: action.payload.name ,
+               description: action.payload.description,
+               images: action.payload.images,
+               price: action.payload.price,
+               rating: action.payload.rating,
+               total_ratings: action.payload.total_ratings,
+               category:action.payload.category,               
+               brand: action.payload.brand,
+               
+            })
+            .then(function (response) {
+               console.log(response);
+            })
+            // .catch(function (error) {
+            //    console.log(error);
+            // });
+         return { ...acc}
+      
+      case "ADD TO WISHLIST":
+         axios
+            .post("http://localhost:3500/wishlist", {
+               name: action.payload.name ,
+               description: action.payload.description,
+               images: action.payload.images,
+               price: action.payload.price,
+               rating: action.payload.rating,
+               total_ratings: action.payload.total_ratings,
+               category:action.payload.category,               
+               brand: action.payload.brand,
             })
             .then(function (response) {
                console.log(response);
@@ -57,9 +88,7 @@ const reducerFunction = (acc, action) => {
             .catch(function (error) {
                console.log(error);
             });
-
-      case "ADD TO WISHLIST":
-         return { ...acc, wishlist: [...acc.wishlist, action.payload] };
+         return { ...acc };
 
       case "MOVE TO WISHLIST FROM CART":
          return {
@@ -67,6 +96,7 @@ const reducerFunction = (acc, action) => {
             wishlist: [...acc.wishlist, action.payload],
             cart: removeItemFromList(acc.cart, action.payload),
          };
+      
       case "MOVE TO CART FROM WISHLIST":
          return {
             ...acc,
