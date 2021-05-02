@@ -2,7 +2,7 @@ import react from "react";
 import { useState, useReducer } from "react";
 import { useProducts } from "../contexts/ProductContext";
 
-import "./components.css";
+
 
 export function Wishlist() {
    const { state, dispatch } = useProducts();
@@ -12,7 +12,7 @@ export function Wishlist() {
          {state.wishlist.map((item) => {
             return (
                <div>
-                  <img src={item.image} alt="error"></img>
+                  <img src={item.images} alt="error"></img>
                   <p>
                      <b>{item.name}</b>
                   </p>

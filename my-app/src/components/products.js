@@ -1,19 +1,26 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { useProducts } from "../contexts/ProductContext";
-import "./components.css";
-
+import {
+   useProducts,
+   getSortedData,
+   getPriceRangeData,
+} from "../contexts/ProductContext";
+import "./products.css";
+import { FaShoppingCart } from "react-icons/fa";
 export function ProductListing() {
    const { state, dispatch } = useProducts();
 
    useEffect(() => {
       (async function () {
          try {
-            const productData = await axios.get("../api/products");
-            // setProducts(productData.data.products);
+            const productData = await axios.get(
+               "http://localhost:3500/products"
+            );
+            console.log(productData);
+
             dispatch({
                type: "SET PRODUCTS",
-               payload: productData.data.products,
+               payload: productData.data,
             });
          } catch (error) {
             dispatch({ type: "LOADING", payload: false });
@@ -21,16 +28,102 @@ export function ProductListing() {
       })();
    }, []);
 
+   let sortedData = getSortedData(state.products, state.sortBy);
+
+   let priceRangeData = getPriceRangeData(sortedData, state.price_range);
+
    return (
-      <div>
-         <h1>Products!</h1>
-         {state.products.map((item) => {
-            return (
-               <div key={item.id} style={{ padding: " 1 rem" }}>
-                  <p className="productName">{item.name}</p>
+      <div className="productDiv">
+         <div className="aside">
+            <h1>Filter Items.</h1>
+            <label>
+               <input
+                  type="radio"
+                  name="sort"
+                  value={state.sortBy}
+                  onChange={() =>
+                     dispatch({ type: "SORT", payload: "PRICE_HIGH_TO_LOW" })
+                  }
+                  checked={state.sortBy && state.sortBy === "PRICE_HIGH_TO_LOW"}
+               />{" "}
+               HIGH TO LOW
+            </label>{" "}
+            ||
+            <label>
+               <input
+                  type="radio"
+                  name="sort"
+                  value={state.sortBy}
+                  onChange={() =>
+                     dispatch({ type: "SORT", payload: "PRICE_LOW_TO_HIGH" })
+                  }
+                  checked={state.sortBy && state.sortBy === "PRICE_LOW_TO_HIGH"}
+               />{" "}
+               LOW TO HIGH
+            </label>
+            <label>
+               Price Range:-{" "}
+               <input
+                  type="range"
+                  min="0"
+                  max="1000"
+                  value={state.price_range}
+                  onChange={(e) =>
+                     dispatch({ type: "PRICE_RANGE", payload: e.target.value })
+                  }
+               />
+            </label>
+            <button onClick={() => dispatch({ type: "RESET" })}>RESET</button>
+         </div>
+
+         <div className="card-parent">
+            {state.products.map((item) => {
+               return (
+                  <div className="cardSecondary">
+                     <div className="imgDiv secondaryImgDiv">
+                        <img className="productImg" src={item.images}></img>
+                     </div>
+                     <div className="cardDetail">
+                        <h3 className="productTitle">{item.name}</h3>
+
+                        <h4 className="productPrice">Rs {item.price}/-</h4>
+                        <div
+                           className="btn-div"
+                           onClick={() => {
+                              dispatch({ type: "ADD TO CART", payload: item });
+                           }}
+                        >
+                           <button className="icon-button">Add to Cart</button>
+                           <button
+                              className="icon-button"
+                              onClick={() => {
+                                 dispatch({
+                                    type: "ADD TO WISHLIST",
+                                    payload: item,
+                                 });
+                              }}
+                           >
+                              {" "}
+                              Add to Wishlist
+                           </button>
+                        </div>
+
+                        <div className="productPrice"></div>
+                     </div>
+                  </div>
+               );
+            })}
+         </div>
+      </div>
+   );
+}
+
+// <div key={item.id} style={{ padding: " 1 rem" }}>
+{
+   /* <p className="productName">{item.name}</p>
                   <img
                      className="productImage"
-                     src={item.image}
+                     src={item.images}
                      alt="error"
                   ></img>
                   <p className="itemPrice">{item.price}</p>
@@ -53,11 +146,8 @@ export function ProductListing() {
                         className="wishListButton"
                      >
                         Add to Wishlist
-                     </button>
-                  </div>
-               </div>
-            );
-         })}
-      </div>
-   );
+                     </button> */
+}
+{
+   /* </div> */
 }

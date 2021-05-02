@@ -1,0 +1,76 @@
+@import "https://tetherui.netlify.app/navigation/nav.css";
+
+.main-nav-div {
+   width: 100%;
+}
+.nav-header {
+   display: flex;
+   margin-right: 50%;
+   top: 0;
+   margin-bottom: 2rem;
+   align-items: center;
+   position: fixed;
+   background-color: #f3f4f6;
+   width: 50%;
+   height: 10vh;
+   font-size: 1.5rem;
+   padding-left: 2rem;
+   font-weight: 1rem;
+   color: var(--primary-color);
+   cursor: pointer;
+}
+.para {
+   padding-top: 0.5rem;
+   padding: 0.7rem;
+   border-radius: 4px;
+   /* overflow-y: hidden; */
+}
+
+.para:hover {
+   background-color: #001224;
+   color: white;
+}
+
+.nav {
+   display: flex;
+   justify-content: flex-end;
+   background-color: #f3f4f6;
+   position: fixed;
+   width: 50%;
+   top: 0;
+   margin-bottom: 1rem;
+   margin-left: 50%;
+   height: 10vh;
+}
+
+* {
+   overflow-x: hidden;
+}
+
+.link-nav {
+   /* padding: 2rem; */
+   padding: 0.7rem;
+   padding-top: 0.5rem;
+   margin: 1rem;
+   text-decoration: none;
+   background-color: var(--primary-color);
+   color: white;
+   outline: none;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   margin-right: 1rem;
+   display: flex;
+   align-items: center;
+
+   /* padding-right: 0.5rem; */
+}
+
+.link-nav:hover {
+   background-color: #001224;
+}
+
+.icon {
+   font-size: 1rem;
+   margin-left: 0.3rem;
+}

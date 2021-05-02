@@ -1,0 +1,39 @@
+@import "https://tetherui.netlify.app/card/card.css";
+
+.card-parent {
+   display: flex;
+   flex-wrap: wrap;
+
+   /* align-items: center; */
+   margin: 2rem;
+   margin-left: 16%;
+   justify-content: center;
+   padding-top: 2rem;
+   background-color: #f3f4f6;
+   margin-right: 0;
+   margin-top: 12vh;
+}
+
+.cardSecondary {
+   width: 20rem;
+   margin: 2rem;
+   background-color: white;
+}
+
+.aside {
+   background-color: #f3f4f6;
+   width: 15%;
+   padding: 1rem;
+   position: fixed;
+   height: 90vh;
+   top: 12vh;
+}
+
+.productDiv {
+   display: flex;
+   /* width: 35vw; */
+}
+
+.productPrice {
+   overflow-y: hidden;
+}
