@@ -7,6 +7,7 @@ import {
 } from "../contexts/ProductContext";
 import "./products.css";
 import { FaShoppingCart } from "react-icons/fa";
+import {postRequestCart,postRequestWishlist} from "./utilities/utilities"
 export function ProductListing() {
    const { state, dispatch } = useProducts();
 
@@ -64,8 +65,8 @@ export function ProductListing() {
                Price Range:-{" "}
                <input
                   type="range"
-                  min="0"
-                  max="1000"
+                  min="200"
+                  max="2000"
                   value={state.price_range}
                   onChange={(e) =>
                      dispatch({ type: "PRICE_RANGE", payload: e.target.value })
@@ -76,11 +77,11 @@ export function ProductListing() {
          </div>
 
          <div className="card-parent">
-            {state.products.map((item) => {
+            {priceRangeData.map((item) => {
                return (
                   <div className="cardSecondary">
                      <div className="imgDiv secondaryImgDiv">
-                        <img className="productImg" src={item.images}></img>
+                        <img className="productImg" src={item.images} alt="error"></img>
                      </div>
                      <div className="cardDetail">
                         <h3 className="productTitle">{item.name}</h3>
@@ -88,19 +89,28 @@ export function ProductListing() {
                         <h4 className="productPrice">Rs {item.price}/-</h4>
                         <div
                            className="btn-div"
-                           onClick={() => {
-                              dispatch({ type: "ADD TO CART", payload: item });
-                           }}
+                           // onClick={() => {
+                           //    dispatch({ type: "ADD TO CART", payload: item });
+                           // }}
                         >
-                           <button className="icon-button">Add to Cart</button>
+                           <button
+                              onClick={() => {postRequestCart(item)}}
+                              className="icon-button"
+                           >
+                              Add to Cart
+                           </button>
                            <button
                               className="icon-button"
-                              onClick={() => {
-                                 dispatch({
-                                    type: "ADD TO WISHLIST",
-                                    payload: item,
-                                 });
-                              }}
+                              onClick={() => {postRequestWishlist(item)}}
+                              
+                              
+                              
+                              
+                                 //    dispatch({
+                              //       type: "ADD TO WISHLIST",
+                              //       payload: item,
+                              //    });
+                              // }}
                            >
                               {" "}
                               Add to Wishlist

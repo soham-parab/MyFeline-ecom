@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
+import { incrementQuantity } from "../components/utilities/utilities";
 
 export const ProductsContext = createContext();
 
@@ -26,16 +27,6 @@ export function useProducts() {
    return useContext(ProductsContext);
 }
 
-// let isProductInCart = state.products.map((item) => {
-//    return item.id === value.product.id ? {...item, quantity: 1, isInCart: !item.isInCart} : item
-// })
-
-// {const isProductInCart = () => products.map((item) =>{ return item.id
-
-// }
-
-// }
-
 const reducerFunction = (acc, action) => {
    switch (action.type) {
       case "SET PRODUCTS":
@@ -45,98 +36,16 @@ const reducerFunction = (acc, action) => {
          };
       case "SET CART":
          return { ...acc, cart: action.payload };
+
+      case "SET CART AFTER MOVE":
+         return { ...acc };
       case "SET WISHLIST":
          return { ...acc, wishlist: action.payload };
-      
 
-      case "ADD TO CART":
-         axios
-            .post("http://localhost:3500/cart", {
-               name: action.payload.name ,
-               description: action.payload.description,
-               images: action.payload.images,
-               price: action.payload.price,
-               rating: action.payload.rating,
-               total_ratings: action.payload.total_ratings,
-               category:action.payload.category,               
-               brand: action.payload.brand,
-               
-            })
-            .then(function (response) {
-               console.log(response);
-            })
-            // .catch(function (error) {
-            //    console.log(error);
-            // });
-         return { ...acc}
-      
-      case "ADD TO WISHLIST":
-         axios
-            .post("http://localhost:3500/wishlist", {
-               name: action.payload.name ,
-               description: action.payload.description,
-               images: action.payload.images,
-               price: action.payload.price,
-               rating: action.payload.rating,
-               total_ratings: action.payload.total_ratings,
-               category:action.payload.category,               
-               brand: action.payload.brand,
-            })
-            .then(function (response) {
-               console.log(response);
-            })
-            .catch(function (error) {
-               console.log(error);
-            });
-         return { ...acc };
-
-      case "MOVE TO WISHLIST FROM CART":
-         return {
-            ...acc,
-            wishlist: [...acc.wishlist, action.payload],
-            cart: removeItemFromList(acc.cart, action.payload),
-         };
-      
-      case "MOVE TO CART FROM WISHLIST":
-         return {
-            ...acc,
-            cart: [...acc.cart, action.payload],
-            wishlist: removeItemFromList(acc.wishlist, action.payload),
-         };
-      case "DELETE FROM CART":
-         return { ...acc, cart: removeItemFromList(acc.cart, action.payload) };
-
-      case "DELETE FROM WISHLIST":
-         return {
-            ...acc,
-            wishlist: removeItemFromList(acc.wishlist, action.payload),
-         };
-
-      case "INCREMENT":
-         return {
-            ...acc,
-            cart: acc.cart.map((item) =>
-               item.id === action.payload.id
-                  ? { ...item, quantity: action.payload.quantity + 1 }
-                  : item
-            ),
-         };
-
-      case "DECREMENT":
-         return action.payload.quantity - 1 === 0
-            ? { ...acc, cart: removeItemFromList(acc.cart, action.payload) }
-            : {
-                 ...acc,
-                 cart: acc.cart.map((item) =>
-                    item.id === action.payload.id
-                       ? { ...item, quantity: action.payload.quantity - 1 }
-                       : item
-                 ),
-              };
       case "SORT":
          return { ...acc, sortBy: action.payload };
       case "PRICE_RANGE":
-         return { ...acc, price_range: action.payLoad };
+         return { ...acc, price_range: action.payload };
       case "RESET":
          return { ...acc, sortBy: null, price_range: 0 };
 
@@ -145,17 +54,53 @@ const reducerFunction = (acc, action) => {
    }
 };
 
-const removeItemFromList = (listItems, itemToBeRemoved) => {
-   return listItems.filter((item) => item.id !== itemToBeRemoved.id);
-};
+// case "MOVE TO WISHLIST FROM CART":
+//    return {
+//       ...acc,
+//       wishlist: [...acc.wishlist, action.payload],
+//       cart: removeItemFromList(acc.cart, action.payload),
+//    };
 
-// export const lowToHigh = (items) => {
-//    return items.sort((a,b) => a.price - b.price)
-// }
+// case "MOVE TO CART FROM WISHLIST":
+//    return {
+//       ...acc,
+//       cart: [...acc.cart, action.payload],
+//       wishlist: removeItemFromList(acc.wishlist, action.payload),
+//    };
+// case "DELETE FROM CART":
+//    return { ...acc, cart: removeItemFromList(acc.cart, action.payload) };
 
-// export const highToLow = (items) => {
-//    return items.sort((a,b) => b.price - a.price)
-// }
+// case "DELETE FROM WISHLIST":
+//    return {
+//       ...acc,
+//       wishlist: removeItemFromList(acc.wishlist, action.payload),
+//    };
+
+// case "INCREMENT":
+//    return {
+//       ...acc,
+//       cart: acc.cart.map((item) =>
+//          item.id === action.payload.id
+//             ? { ...item, quantity: action.payload.quantity + 1 }
+//             : item
+//       ),
+//    };
+
+// case "DECREMENT":
+//    return action.payload.quantity - 1 === 0
+//       ? { ...acc, cart: removeItemFromList(acc.cart, action.payload) }
+//       : {
+//            ...acc,
+//            cart: acc.cart.map((item) =>
+//               item.id === action.payload.id
+//                  ? { ...item, quantity: action.payload.quantity - 1 }
+//                  : item
+//            ),
+//         };
+
+// const removeItemFromList = (listItems, itemToBeRemoved) => {
+//    return listItems.filter((item) => item.id !== itemToBeRemoved.id);
+// };
 
 export function getSortedData(productList, sortBy) {
    if (sortBy && sortBy === "PRICE_HIGH_TO_LOW") {
