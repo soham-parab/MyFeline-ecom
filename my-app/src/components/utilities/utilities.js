@@ -6,17 +6,20 @@ import { useProducts } from "../../contexts/ProductContext";
 export const postRequestCart = (prd) => {
    (async function () {
       try {
-         const response = await axios.post("http://localhost:3500/cart", {
-            name: prd.name,
-            description: prd.description,
-            images: prd.images,
-            price: prd.price,
-            rating: prd.rating,
-            total_ratings: prd.total_ratings,
-            category: prd.category,
-            brand: prd.brand,
-            quantity: prd.quantity,
-         });
+         const response = await axios.post(
+            "https://myfeline-restapi.sohamparab13.repl.co/cart",
+            {
+               name: prd.name,
+               description: prd.description,
+               images: prd.images,
+               price: prd.price,
+               rating: prd.rating,
+               total_ratings: prd.total_ratings,
+               category: prd.category,
+               brand: prd.brand,
+               quantity: prd.quantity,
+            }
+         );
          console.log(response, "adawda");
       } catch (error) {
          console.log(error);
@@ -27,17 +30,20 @@ export const postRequestCart = (prd) => {
 export const postRequestWishlist = (prd) => {
    (async function () {
       try {
-         const response = await axios.post("http://localhost:3500/wishlist", {
-            name: prd.name,
-            description: prd.description,
-            images: prd.images,
-            price: prd.price,
-            rating: prd.rating,
-            total_ratings: prd.total_ratings,
-            category: prd.category,
-            brand: prd.brand,
-            quantity: prd.quantity,
-         });
+         const response = await axios.post(
+            "https://myfeline-restapi.sohamparab13.repl.co/wishlist",
+            {
+               name: prd.name,
+               description: prd.description,
+               images: prd.images,
+               price: prd.price,
+               rating: prd.rating,
+               total_ratings: prd.total_ratings,
+               category: prd.category,
+               brand: prd.brand,
+               quantity: prd.quantity,
+            }
+         );
       } catch (error) {
          console.log(error);
       }
@@ -48,7 +54,7 @@ export const deleteRequestCart = (prd, dispatch) => {
    (async function () {
       try {
          const response = await axios.delete(
-            `http://localhost:3500/cart/${prd._id}`
+            `https://myfeline-restapi.sohamparab13.repl.co/cart/${prd._id}`
          );
          console.log(response, "sadasd");
          dispatch({ type: "SET CART", payload: response.data });
@@ -61,17 +67,20 @@ export const deleteRequestCart = (prd, dispatch) => {
 export const moveToWishlist = (prd, dispatch) => {
    (async function () {
       try {
-         const response = await axios.post("http://localhost:3500/wishlist", {
-            name: prd.name,
-            description: prd.description,
-            images: prd.images,
-            price: prd.price,
-            rating: prd.rating,
-            total_ratings: prd.total_ratings,
-            category: prd.category,
-            brand: prd.brand,
-            quantity: prd.quantity,
-         });
+         const response = await axios.post(
+            "https://myfeline-restapi.sohamparab13.repl.co/wishlist",
+            {
+               name: prd.name,
+               description: prd.description,
+               images: prd.images,
+               price: prd.price,
+               rating: prd.rating,
+               total_ratings: prd.total_ratings,
+               category: prd.category,
+               brand: prd.brand,
+               quantity: prd.quantity,
+            }
+         );
       } catch (error) {
          console.log(error);
       }
@@ -82,7 +91,7 @@ export const incrementQuantity = (prd, dispatch) => {
    (async function () {
       try {
          const response = await axios.patch(
-            `http://localhost:3500/cart/${prd._id}`,
+            `https://myfeline-restapi.sohamparab13.repl.co/cart/${prd._id}`,
             {
                quantity: prd.quantity + 1,
             }
@@ -102,7 +111,7 @@ export const decrementQuantity = (prd, dispatch) => {
       (async function () {
          try {
             const response = await axios.patch(
-               `http://localhost:3500/cart/${prd._id}`,
+               `https://myfeline-restapi.sohamparab13.repl.co/cart/${prd._id}`,
                {
                   quantity: prd.quantity - 1,
                }
@@ -120,7 +129,7 @@ export const deleteRequestWishlist = (prd, dispatch) => {
    (async function () {
       try {
          const response = await axios.delete(
-            `http://localhost:3500/wishlist/${prd._id}`
+            `https://myfeline-restapi.sohamparab13.repl.co/wishlist/${prd._id}`
          );
          console.log(response, "sadasd");
          dispatch({ type: "SET WISHLIST", payload: response.data });
@@ -133,17 +142,20 @@ export const deleteRequestWishlist = (prd, dispatch) => {
 export const moveToCart = (prd, dispatch) => {
    (async function () {
       try {
-         const response = await axios.post("http://localhost:3500/cart", {
-            name: prd.name,
-            description: prd.description,
-            images: prd.images,
-            price: prd.price,
-            rating: prd.rating,
-            total_ratings: prd.total_ratings,
-            category: prd.category,
-            brand: prd.brand,
-            quantity: prd.quantity,
-         });
+         const response = await axios.post(
+            "https://myfeline-restapi.sohamparab13.repl.co/cart",
+            {
+               name: prd.name,
+               description: prd.description,
+               images: prd.images,
+               price: prd.price,
+               rating: prd.rating,
+               total_ratings: prd.total_ratings,
+               category: prd.category,
+               brand: prd.brand,
+               quantity: prd.quantity,
+            }
+         );
       } catch (error) {
          console.log(error);
       }
@@ -155,13 +167,13 @@ const totalPrice = () => {};
 export const itemPrice = (easy) => {
    let total = 0;
    easy.cart.map((item) => {
-      total = total + item.price * (item.quantity );
+      total = total + item.price * item.quantity;
    });
 
    return total;
 };
 
 export function priceProductTotal(product) {
-    const total = parseInt(product.price) * parseInt(product.quantity);
-    return total;
-  }
+   const total = parseInt(product.price) * parseInt(product.quantity);
+   return total;
+}

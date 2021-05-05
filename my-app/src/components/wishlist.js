@@ -3,7 +3,11 @@ import { useState, useReducer, useEffect } from "react";
 import { useProducts } from "../contexts/ProductContext";
 import axios from "axios";
 import "./wishlist.css";
-import { deleteRequestCart, deleteRequestWishlist, moveToCart } from "./utilities/utilities";
+import {
+   deleteRequestCart,
+   deleteRequestWishlist,
+   moveToCart,
+} from "./utilities/utilities";
 
 export function Wishlist() {
    const { state, dispatch } = useProducts();
@@ -12,7 +16,7 @@ export function Wishlist() {
       (async function () {
          try {
             const productData = await axios.get(
-               "http://localhost:3500/wishlist"
+               "https://myfeline-restapi.sohamparab13.repl.co/wishlist"
             );
 
             dispatch({
@@ -38,7 +42,6 @@ export function Wishlist() {
                            </div>
                            <p className="prdDescrip">{item.description}</p>
 
-
                            <div className="HorizCardDetails">
                               <div className="brandTitle">{item.name}</div>
 
@@ -48,10 +51,9 @@ export function Wishlist() {
                            </div>
                            <div className="horizCardFooter">
                               <button
-
-                              onClick = {() => {
-                                 deleteRequestWishlist(item,dispatch)
-                              }}
+                                 onClick={() => {
+                                    deleteRequestWishlist(item, dispatch);
+                                 }}
                                  // onClick={() => {
                                  //    dispatch({
                                  //       type: "DELETE FROM WISHLIST",
@@ -65,9 +67,8 @@ export function Wishlist() {
 
                               <button
                                  onClick={() => {
-                                    moveToCart(item,dispatch)
-                                    deleteRequestWishlist(item,dispatch)
-
+                                    moveToCart(item, dispatch);
+                                    deleteRequestWishlist(item, dispatch);
 
                                     // dispatch({
                                     //    type: "MOVE TO CART FROM WISHLIST",

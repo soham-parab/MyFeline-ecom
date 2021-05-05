@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-// import setupMockServer from "../src/api/mock-server";
 import { ProductsProvider } from "./contexts/ProductContext";
 import {
    BrowserRouter as Router,
@@ -11,9 +10,8 @@ import {
    Navigate,
    useNavigate,
    useParams,
-   useLocation
- } from "react-router-dom";
-
+   useLocation,
+} from "react-router-dom";
 
 // setupMockServer();
 

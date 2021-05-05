@@ -7,7 +7,7 @@ import {
 } from "../contexts/ProductContext";
 import "./products.css";
 import { FaShoppingCart } from "react-icons/fa";
-import {postRequestCart,postRequestWishlist} from "./utilities/utilities"
+import { postRequestCart, postRequestWishlist } from "./utilities/utilities";
 export function ProductListing() {
    const { state, dispatch } = useProducts();
 
@@ -15,7 +15,7 @@ export function ProductListing() {
       (async function () {
          try {
             const productData = await axios.get(
-               "http://localhost:3500/products"
+               "https://myfeline-restapi.sohamparab13.repl.co/products"
             );
 
             dispatch({
@@ -35,9 +35,10 @@ export function ProductListing() {
    return (
       <div className="productDiv">
          <div className="aside">
-            <h1>Filter Items.</h1>
-            <label>
+            <h2>Filter Items</h2>
+            <label className="radio-label">
                <input
+                  className="radio-buttons"
                   type="radio"
                   name="sort"
                   value={state.sortBy}
@@ -46,11 +47,12 @@ export function ProductListing() {
                   }
                   checked={state.sortBy && state.sortBy === "PRICE_HIGH_TO_LOW"}
                />{" "}
-               HIGH TO LOW
+               High to low
             </label>{" "}
-            ||
-            <label>
+            <br />
+            <label className="radio-label">
                <input
+                  className="radio-buttons"
                   type="radio"
                   name="sort"
                   value={state.sortBy}
@@ -59,11 +61,13 @@ export function ProductListing() {
                   }
                   checked={state.sortBy && state.sortBy === "PRICE_LOW_TO_HIGH"}
                />{" "}
-               LOW TO HIGH
+               Low to High
             </label>
-            <label>
+            <br />
+            <label className="radio-label">
                Price Range:-{" "}
                <input
+                  className="price-button"
                   type="range"
                   min="200"
                   max="2000"
@@ -73,7 +77,13 @@ export function ProductListing() {
                   }
                />
             </label>
-            <button onClick={() => dispatch({ type: "RESET" })}>RESET</button>
+            <br />
+            <button
+               className="reset-button"
+               onClick={() => dispatch({ type: "RESET" })}
+            >
+               RESET
+            </button>
          </div>
 
          <div className="card-parent">
@@ -81,7 +91,11 @@ export function ProductListing() {
                return (
                   <div className="cardSecondary">
                      <div className="imgDiv secondaryImgDiv">
-                        <img className="productImg" src={item.images} alt="error"></img>
+                        <img
+                           className="productImg"
+                           src={item.images}
+                           alt="error"
+                        ></img>
                      </div>
                      <div className="cardDetail">
                         <h3 className="productTitle">{item.name}</h3>
@@ -94,19 +108,20 @@ export function ProductListing() {
                            // }}
                         >
                            <button
-                              onClick={() => {postRequestCart(item)}}
+                              onClick={() => {
+                                 postRequestCart(item);
+                              }}
                               className="icon-button"
                            >
                               Add to Cart
                            </button>
                            <button
                               className="icon-button"
-                              onClick={() => {postRequestWishlist(item)}}
-                              
-                              
-                              
-                              
-                                 //    dispatch({
+                              onClick={() => {
+                                 postRequestWishlist(item);
+                              }}
+
+                              //    dispatch({
                               //       type: "ADD TO WISHLIST",
                               //       payload: item,
                               //    });

@@ -20,6 +20,12 @@
    background-color: white;
 }
 
+h2 {
+   align-self: center;
+   margin-bottom: 1rem;
+   color: var(--primary-color);
+}
+
 .aside {
    background-color: #f3f4f6;
    width: 15%;
@@ -27,6 +33,8 @@
    position: fixed;
    height: 90vh;
    top: 12vh;
+   display: flex;
+   flex-direction: column;
 }
 
 .productDiv {
@@ -36,4 +44,28 @@
 
 .productPrice {
    overflow-y: hidden;
+}
+
+.reset-button {
+   display: inline-block;
+   width: 5vw;
+   align-self: center;
+   padding: 0.5rem 0;
+   background-color: var(--primary-color);
+   border-radius: 4px;
+   color: white;
+   border: none;
+   cursor: pointer;
+}
+
+.radio-buttons {
+   cursor: pointer;
+}
+
+.radio-label {
+   font-weight: 700;
+}
+
+.price-button {
+   cursor: pointer;
 }

@@ -19,7 +19,9 @@ export function Cart() {
    useEffect(() => {
       (async function () {
          try {
-            const productData = await axios.get("http://localhost:3500/cart");
+            const productData = await axios.get(
+               "https://myfeline-restapi.sohamparab13.repl.co/cart"
+            );
             console.log(productData);
 
             dispatch({
@@ -90,10 +92,9 @@ export function Cart() {
                               </button>
                               <button
                                  onClick={
-                                    () => {moveToWishlist(item, dispatch)
-                                       deleteRequestCart(item, dispatch)
-                                    
-                                    
+                                    () => {
+                                       moveToWishlist(item, dispatch);
+                                       deleteRequestCart(item, dispatch);
                                     }
                                     // dispatch({
                                     //    type: "MOVE TO WISHLIST FROM CART",

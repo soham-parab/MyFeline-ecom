@@ -18,35 +18,16 @@ function App() {
    const [route, setRoute] = useState("products");
    return (
       <div className="App">
-         <div className="header">
-            
-         </div>
-       
+         <div className="header"></div>
 
          <Router>
-         <Nav />
+            <Nav />
             <Routes>
                <Route path="/" element={<ProductListing />} />
                <Route path="/cart" element={<Cart />} />
                <Route path="/wishlist" element={<Wishlist />} />
             </Routes>
          </Router>
-
-         {/* <button className="button" onClick={() => setRoute("products")}>
-            Show Products
-         </button>
-         <button className="button" onClick={() => setRoute("cart")}>
-            {" "}
-            My Cart{" "}
-         </button>
-         <button className="button" onClick={() => setRoute("wishlist")}>
-            {" "}
-            My Wishlist{" "}
-         </button>
-
-         {route === "products" && <ProductListing />}
-         {route === "cart" && <Cart />}
-         {route === "wishlist" && <Wishlist />} */}
       </div>
    );
 }
