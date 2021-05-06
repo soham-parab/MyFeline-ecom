@@ -109,44 +109,44 @@ export function ProductListing() {
                               alt="error"
                            ></img>
                         </div>
-                        <div className="cardDetail">
-                           <h3 className="productTitle">{item.name}</h3>
+                     </Link>
+                     <div className="cardDetail">
+                        <h3 className="productTitle">{item.name}</h3>
 
-                           <h4 className="productPrice">Rs {item.price}/-</h4>
-                           <div
-                              className="btn-div"
-                              // onClick={() => {
-                              //    dispatch({ type: "ADD TO CART", payload: item });
+                        <h4 className="productPrice">Rs {item.price}/-</h4>
+                        <div
+                           className="btn-div"
+                           // onClick={() => {
+                           //    dispatch({ type: "ADD TO CART", payload: item });
+                           // }}
+                        >
+                           <button
+                              onClick={() => {
+                                 postRequestCart(item);
+                              }}
+                              className="icon-button"
+                           >
+                              Add to Cart
+                           </button>
+                           <button
+                              className="icon-button"
+                              onClick={() => {
+                                 postRequestWishlist(item);
+                              }}
+
+                              //    dispatch({
+                              //       type: "ADD TO WISHLIST",
+                              //       payload: item,
+                              //    });
                               // }}
                            >
-                              <button
-                                 onClick={() => {
-                                    postRequestCart(item);
-                                 }}
-                                 className="icon-button"
-                              >
-                                 Add to Cart
-                              </button>
-                              <button
-                                 className="icon-button"
-                                 onClick={() => {
-                                    postRequestWishlist(item);
-                                 }}
-
-                                 //    dispatch({
-                                 //       type: "ADD TO WISHLIST",
-                                 //       payload: item,
-                                 //    });
-                                 // }}
-                              >
-                                 {" "}
-                                 Add to Wishlist
-                              </button>
-                           </div>
-
-                           <div className="productPrice"></div>
+                              {" "}
+                              Add to Wishlist
+                           </button>
                         </div>
-                     </Link>
+
+                        <div className="productPrice"></div>
+                     </div>
                   </div>
                );
             })}
