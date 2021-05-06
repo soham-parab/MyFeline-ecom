@@ -8,6 +8,16 @@ import {
 import "./products.css";
 import { FaShoppingCart } from "react-icons/fa";
 import { postRequestCart, postRequestWishlist } from "./utilities/utilities";
+import {
+   BrowserRouter as Router,
+   Routes,
+   Link,
+   Route,
+   Navigate,
+   useNavigate,
+   useParams,
+   useLocation,
+} from "react-router-dom";
 export function ProductListing() {
    const { state, dispatch } = useProducts();
 
@@ -88,90 +98,59 @@ export function ProductListing() {
 
          <div className="card-parent">
             {priceRangeData.map((item) => {
+               console.log(item._id);
                return (
                   <div className="cardSecondary">
-                     <div className="imgDiv secondaryImgDiv">
-                        <img
-                           className="productImg"
-                           src={item.images}
-                           alt="error"
-                        ></img>
-                     </div>
-                     <div className="cardDetail">
-                        <h3 className="productTitle">{item.name}</h3>
+                     <Link to={`/productpage/${item._id}`}>
+                        <div className="imgDiv secondaryImgDiv">
+                           <img
+                              className="productImg"
+                              src={item.images}
+                              alt="error"
+                           ></img>
+                        </div>
+                        <div className="cardDetail">
+                           <h3 className="productTitle">{item.name}</h3>
 
-                        <h4 className="productPrice">Rs {item.price}/-</h4>
-                        <div
-                           className="btn-div"
-                           // onClick={() => {
-                           //    dispatch({ type: "ADD TO CART", payload: item });
-                           // }}
-                        >
-                           <button
-                              onClick={() => {
-                                 postRequestCart(item);
-                              }}
-                              className="icon-button"
-                           >
-                              Add to Cart
-                           </button>
-                           <button
-                              className="icon-button"
-                              onClick={() => {
-                                 postRequestWishlist(item);
-                              }}
-
-                              //    dispatch({
-                              //       type: "ADD TO WISHLIST",
-                              //       payload: item,
-                              //    });
+                           <h4 className="productPrice">Rs {item.price}/-</h4>
+                           <div
+                              className="btn-div"
+                              // onClick={() => {
+                              //    dispatch({ type: "ADD TO CART", payload: item });
                               // }}
                            >
-                              {" "}
-                              Add to Wishlist
-                           </button>
-                        </div>
+                              <button
+                                 onClick={() => {
+                                    postRequestCart(item);
+                                 }}
+                                 className="icon-button"
+                              >
+                                 Add to Cart
+                              </button>
+                              <button
+                                 className="icon-button"
+                                 onClick={() => {
+                                    postRequestWishlist(item);
+                                 }}
 
-                        <div className="productPrice"></div>
-                     </div>
+                                 //    dispatch({
+                                 //       type: "ADD TO WISHLIST",
+                                 //       payload: item,
+                                 //    });
+                                 // }}
+                              >
+                                 {" "}
+                                 Add to Wishlist
+                              </button>
+                           </div>
+
+                           <div className="productPrice"></div>
+                        </div>
+                     </Link>
                   </div>
                );
             })}
          </div>
       </div>
    );
-}
-
-// <div key={item.id} style={{ padding: " 1 rem" }}>
-{
-   /* <p className="productName">{item.name}</p>
-                  <img
-                     className="productImage"
-                     src={item.images}
-                     alt="error"
-                  ></img>
-                  <p className="itemPrice">{item.price}</p>
-
-                  <div className="cartDiv">
-                     <button
-                        onClick={() => {
-                           dispatch({ type: "ADD TO CART", payload: item });
-                        }}
-                        className="cartButton"
-                     >
-                        Add to Cart
-                     </button>
-                  </div>
-                  <div className="wishListDiv">
-                     <button
-                        onClick={() => {
-                           dispatch({ type: "ADD TO WISHLIST", payload: item });
-                        }}
-                        className="wishListButton"
-                     >
-                        Add to Wishlist
-                     </button> */
-}
-{
-   /* </div> */
 }
