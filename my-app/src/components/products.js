@@ -6,18 +6,9 @@ import {
    getPriceRangeData,
 } from "../contexts/ProductContext";
 import "./products.css";
-import { FaShoppingCart } from "react-icons/fa";
+
 import { postRequestCart, postRequestWishlist } from "./utilities/utilities";
-import {
-   BrowserRouter as Router,
-   Routes,
-   Link,
-   Route,
-   Navigate,
-   useNavigate,
-   useParams,
-   useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Link } from "react-router-dom";
 export function ProductListing() {
    const { state, dispatch } = useProducts();
 
@@ -94,6 +85,32 @@ export function ProductListing() {
             >
                RESET
             </button>
+            <label>
+               <input
+                  onClick={() =>
+                     dispatch({ type: "IN STOCK", payload: "true" })
+                  }
+                  className=""
+                  type="checkbox"
+                  name="in_stock_only"
+               />{" "}
+               In Stock Only
+            </label>
+            <label>
+               <input type="checkbox" name="Treats" />
+               Treats
+            </label>
+            <label>
+               <input type="checkbox" name="Accessories" />
+               Accessories
+            </label>
+            <label>
+               <input type="checkbox" name="Kibble." /> Kibble
+            </label>
+            <label>
+               <input type="checkbox" name="Gravy food." />
+               Gravy food
+            </label>
          </div>
 
          <div className="card-parent">
@@ -114,12 +131,7 @@ export function ProductListing() {
                         <h3 className="productTitle">{item.name}</h3>
 
                         <h4 className="productPrice">Rs {item.price}/-</h4>
-                        <div
-                           className="btn-div"
-                           // onClick={() => {
-                           //    dispatch({ type: "ADD TO CART", payload: item });
-                           // }}
-                        >
+                        <div className="btn-div">
                            <button
                               onClick={() => {
                                  postRequestCart(item);
@@ -133,12 +145,6 @@ export function ProductListing() {
                               onClick={() => {
                                  postRequestWishlist(item);
                               }}
-
-                              //    dispatch({
-                              //       type: "ADD TO WISHLIST",
-                              //       payload: item,
-                              //    });
-                              // }}
                            >
                               {" "}
                               Add to Wishlist

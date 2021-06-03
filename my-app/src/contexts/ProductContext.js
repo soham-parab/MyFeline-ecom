@@ -9,7 +9,7 @@ export function ProductsProvider({ children }) {
       products: [],
       cart: [],
       wishlist: [],
-      INSTOCK: false,
+      stock: false,
       FASTDELIVERY: false,
       sortBy: null,
       RANGERVALUE: 1000,
@@ -48,6 +48,12 @@ const reducerFunction = (acc, action) => {
          return { ...acc, price_range: action.payload };
       case "RESET":
          return { ...acc, sortBy: null, price_range: 0 };
+      case "IN STOCK":
+         return {
+            ...acc,
+            products: { ...acc.products },
+            stock: action.payload,
+         };
 
       default:
          break;

@@ -22,7 +22,6 @@ export function Cart() {
             const productData = await axios.get(
                "https://myfeline-restapi.sohamparab13.repl.co/cart"
             );
-            console.log(productData);
 
             dispatch({
                type: "SET CART",
@@ -53,13 +52,6 @@ export function Cart() {
                                  </p>
                                  <div className="horizCardBtnDiv">
                                     <BsPlusSquare
-                                       // onClick={() => {
-                                       //    dispatch({
-                                       //       type: "INCREMENT",
-                                       //       payload: item,
-                                       //    });
-                                       // }}
-
                                        onClick={() =>
                                           incrementQuantity(item, dispatch)
                                        }
