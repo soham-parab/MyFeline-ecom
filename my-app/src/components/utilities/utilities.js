@@ -7,7 +7,7 @@ export const postRequestCart = (prd) => {
    (async function () {
       try {
          const response = await axios.post(
-            "https://myfeline-restapi.sohamparab13.repl.co/cart",
+            "https://my-feline-rest-api.herokuapp.com/cart",
             {
                name: prd.name,
                description: prd.description,
@@ -31,7 +31,7 @@ export const postRequestWishlist = (prd) => {
    (async function () {
       try {
          const response = await axios.post(
-            "https://myfeline-restapi.sohamparab13.repl.co/wishlist",
+            "https://my-feline-rest-api.herokuapp.com/wishlist",
             {
                name: prd.name,
                description: prd.description,
@@ -54,7 +54,7 @@ export const deleteRequestCart = (prd, dispatch) => {
    (async function () {
       try {
          const response = await axios.delete(
-            `https://myfeline-restapi.sohamparab13.repl.co/cart/${prd._id}`
+            `https://my-feline-rest-api.herokuapp.com/cart/${prd._id}`
          );
          console.log(response, "sadasd");
          dispatch({ type: "SET CART", payload: response.data });
@@ -68,7 +68,7 @@ export const moveToWishlist = (prd, dispatch) => {
    (async function () {
       try {
          const response = await axios.post(
-            "https://myfeline-restapi.sohamparab13.repl.co/wishlist",
+            "https://my-feline-rest-api.herokuapp.com/wishlist",
             {
                name: prd.name,
                description: prd.description,
@@ -91,7 +91,7 @@ export const incrementQuantity = (prd, dispatch) => {
    (async function () {
       try {
          const response = await axios.patch(
-            `https://myfeline-restapi.sohamparab13.repl.co/cart/${prd._id}`,
+            `https://my-feline-rest-api.herokuapp.com/cart/${prd._id}`,
             {
                quantity: prd.quantity + 1,
             }
@@ -111,7 +111,7 @@ export const decrementQuantity = (prd, dispatch) => {
       (async function () {
          try {
             const response = await axios.patch(
-               `https://myfeline-restapi.sohamparab13.repl.co/cart/${prd._id}`,
+               `https://my-feline-rest-api.herokuapp.com/cart/${prd._id}`,
                {
                   quantity: prd.quantity - 1,
                }
@@ -129,7 +129,7 @@ export const deleteRequestWishlist = (prd, dispatch) => {
    (async function () {
       try {
          const response = await axios.delete(
-            `https://myfeline-restapi.sohamparab13.repl.co/wishlist/${prd._id}`
+            `https://my-feline-rest-api.herokuapp.com/wishlist/${prd._id}`
          );
          console.log(response, "sadasd");
          dispatch({ type: "SET WISHLIST", payload: response.data });
@@ -143,7 +143,7 @@ export const moveToCart = (prd, dispatch) => {
    (async function () {
       try {
          const response = await axios.post(
-            "https://myfeline-restapi.sohamparab13.repl.co/cart",
+            "https://my-feline-rest-api.herokuapp.com/cart",
             {
                name: prd.name,
                description: prd.description,

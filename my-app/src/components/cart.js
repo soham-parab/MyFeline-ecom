@@ -20,7 +20,7 @@ export function Cart() {
       (async function () {
          try {
             const productData = await axios.get(
-               "https://myfeline-restapi.sohamparab13.repl.co/cart"
+               "https://my-feline-rest-api.herokuapp.com/cart"
             );
 
             dispatch({

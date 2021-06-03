@@ -16,7 +16,7 @@ export function Wishlist() {
       (async function () {
          try {
             const productData = await axios.get(
-               "https://myfeline-restapi.sohamparab13.repl.co/wishlist"
+               "https://my-feline-rest-api.herokuapp.com/wishlist"
             );
 
             dispatch({

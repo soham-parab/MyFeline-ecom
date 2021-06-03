@@ -16,7 +16,7 @@ export function ProductListing() {
       (async function () {
          try {
             const productData = await axios.get(
-               "https://myfeline-restapi.sohamparab13.repl.co/products"
+               "https://my-feline-rest-api.herokuapp.com/products"
             );
 
             dispatch({
