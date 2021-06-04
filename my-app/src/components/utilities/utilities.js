@@ -1,7 +1,4 @@
-import react from "react";
-import { useEffect, usestate, useReducer } from "react";
 import axios from "axios";
-import { useProducts } from "../../contexts/ProductContext";
 
 export const postRequestCart = (prd) => {
    (async function () {

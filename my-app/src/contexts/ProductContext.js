@@ -1,6 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
-import axios from "axios";
-import { incrementQuantity } from "../components/utilities/utilities";
+import { createContext, useContext, useReducer } from "react";
 
 export const ProductsContext = createContext();
 
@@ -59,54 +57,6 @@ const reducerFunction = (acc, action) => {
          break;
    }
 };
-
-// case "MOVE TO WISHLIST FROM CART":
-//    return {
-//       ...acc,
-//       wishlist: [...acc.wishlist, action.payload],
-//       cart: removeItemFromList(acc.cart, action.payload),
-//    };
-
-// case "MOVE TO CART FROM WISHLIST":
-//    return {
-//       ...acc,
-//       cart: [...acc.cart, action.payload],
-//       wishlist: removeItemFromList(acc.wishlist, action.payload),
-//    };
-// case "DELETE FROM CART":
-//    return { ...acc, cart: removeItemFromList(acc.cart, action.payload) };
-
-// case "DELETE FROM WISHLIST":
-//    return {
-//       ...acc,
-//       wishlist: removeItemFromList(acc.wishlist, action.payload),
-//    };
-
-// case "INCREMENT":
-//    return {
-//       ...acc,
-//       cart: acc.cart.map((item) =>
-//          item.id === action.payload.id
-//             ? { ...item, quantity: action.payload.quantity + 1 }
-//             : item
-//       ),
-//    };
-
-// case "DECREMENT":
-//    return action.payload.quantity - 1 === 0
-//       ? { ...acc, cart: removeItemFromList(acc.cart, action.payload) }
-//       : {
-//            ...acc,
-//            cart: acc.cart.map((item) =>
-//               item.id === action.payload.id
-//                  ? { ...item, quantity: action.payload.quantity - 1 }
-//                  : item
-//            ),
-//         };
-
-// const removeItemFromList = (listItems, itemToBeRemoved) => {
-//    return listItems.filter((item) => item.id !== itemToBeRemoved.id);
-// };
 
 export function getSortedData(productList, sortBy) {
    if (sortBy && sortBy === "PRICE_HIGH_TO_LOW") {
