@@ -13,13 +13,11 @@
 }
 
 .product-div {
-   /* margin-left: 50vw; */
    width: 50%;
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   /* margin-bottom: 30vh; */
 }
 
 .products-page-div {
@@ -29,17 +27,6 @@
    align-items: center;
    margin-top: 12vh;
 }
-
-/* .item-name {
-   padding: 1rem;
-}
-.item.descrip {
-   padding: 1rem;
-}
-
-.item-rating {
-   padding: 1rem;
-} */
 
 .item-brand {
    padding: 1rem;

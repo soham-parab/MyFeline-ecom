@@ -159,8 +159,6 @@ export const moveToCart = (prd, dispatch) => {
    })();
 };
 
-const totalPrice = () => {};
-
 export const itemPrice = (easy) => {
    let total = 0;
    easy.cart.map((item) => {

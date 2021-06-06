@@ -2,7 +2,6 @@ import { useProducts } from "../contexts/ProductContext";
 import { useEffect } from "react";
 
 import "./cart.css";
-import { FaPlus, FaMinus } from "react-icons/fa";
 import { BsPlusSquare, BsDashSquare } from "react-icons/bs";
 import axios from "axios";
 import {
@@ -83,16 +82,10 @@ export function Cart() {
                                  Remove from Cart
                               </button>
                               <button
-                                 onClick={
-                                    () => {
-                                       moveToWishlist(item, dispatch);
-                                       deleteRequestCart(item, dispatch);
-                                    }
-                                    // dispatch({
-                                    //    type: "MOVE TO WISHLIST FROM CART",
-                                    //    payload: item,
-                                    // })
-                                 }
+                                 onClick={() => {
+                                    moveToWishlist(item, dispatch);
+                                    deleteRequestCart(item, dispatch);
+                                 }}
                                  className="horizFooterBtn"
                               >
                                  Move to Wishlist

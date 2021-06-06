@@ -1,13 +1,8 @@
-import react from "react";
-import { useState, useReducer, useEffect } from "react";
+import { useEffect } from "react";
 import { useProducts } from "../contexts/ProductContext";
 import axios from "axios";
 import "./wishlist.css";
-import {
-   deleteRequestCart,
-   deleteRequestWishlist,
-   moveToCart,
-} from "./utilities/utilities";
+import { deleteRequestWishlist, moveToCart } from "./utilities/utilities";
 
 export function Wishlist() {
    const { state, dispatch } = useProducts();
@@ -54,12 +49,6 @@ export function Wishlist() {
                                  onClick={() => {
                                     deleteRequestWishlist(item, dispatch);
                                  }}
-                                 // onClick={() => {
-                                 //    dispatch({
-                                 //       type: "DELETE FROM WISHLIST",
-                                 //       payload: item,
-                                 //    });
-                                 // }}
                                  className="horizFooterBtn secBtn"
                               >
                                  Remove from Wishlist
@@ -69,11 +58,6 @@ export function Wishlist() {
                                  onClick={() => {
                                     moveToCart(item, dispatch);
                                     deleteRequestWishlist(item, dispatch);
-
-                                    // dispatch({
-                                    //    type: "MOVE TO CART FROM WISHLIST",
-                                    //    payload: item,
-                                    // });
                                  }}
                                  className="horizFooterBtn"
                               >

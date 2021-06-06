@@ -1,20 +1,10 @@
-import axios from "axios";
-import { useEffect } from "react";
 import "./productpage.css";
-import {
-   BrowserRouter as Router,
-   Routes,
-   Route,
-   Navigate,
-   useNavigate,
-   useParams,
-   useLocation,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useProducts } from "../contexts/ProductContext";
 import { postRequestCart, postRequestWishlist } from "./utilities/utilities";
 
 export const ProductPage = () => {
-   const { state, dispatch } = useProducts();
+   const { state } = useProducts();
    const { id } = useParams();
 
    return (
@@ -56,8 +46,4 @@ export const ProductPage = () => {
             })}
       </div>
    );
-
-   //    return {state.products.map((item) =>{
-   //        return console.log(item)
-   //    })}
 };
