@@ -3,12 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { ProductsProvider } from "./contexts/ProductContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 ReactDOM.render(
-   <React.StrictMode>
+  <React.StrictMode>
+    <AuthProvider>
       <ProductsProvider>
-         <App />
+        <App />
       </ProductsProvider>
-   </React.StrictMode>,
-   document.getElementById("root")
+    </AuthProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );

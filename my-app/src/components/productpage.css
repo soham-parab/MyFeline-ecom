@@ -1,36 +1,36 @@
 .image-div {
-   width: 31%;
-   height: 30%;
-   padding-left: 5rem;
+  width: 31%;
+  height: 30%;
+  padding-left: 5rem;
 
-   top: 20vh;
+  top: 20vh;
 }
 
 .item-image {
-   border: 1px inset black;
-   padding: 2rem;
-   margin-top: 10vh;
+  border: 1px inset black;
+  padding: 2rem;
+  margin-top: 10vh;
 }
 
 .product-div {
-   width: 50%;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .products-page-div {
-   display: flex;
-   width: 100%;
-   justify-content: space-around;
-   align-items: center;
-   margin-top: 12vh;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 12vh;
 }
 
 .item-brand {
-   padding: 1rem;
-   font-weight: 500;
+  padding: 1rem;
+  font-weight: 500;
 }
 
 .item-brand,
@@ -39,28 +39,28 @@
 .item-rating,
 .item-descrip,
 .item-total-rating {
-   font-weight: 500;
-   padding: 0.5rem;
+  font-weight: 500;
+  padding: 0.5rem;
 }
 .item-name,
 .item-descrip {
-   color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .post-btn-cart,
 .post-btn-wishlist {
-   padding: 0.7rem 0.5rem;
-   margin-top: 1rem;
-   border-radius: 4px;
-   background-color: var(--primary-color);
-   color: white;
-   border: none;
-   cursor: pointer;
+  padding: 0.7rem 0.5rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 .item-brand,
 .item-price,
 .item-rating,
 .item-total-rating {
-   color: rgb(102, 99, 99);
+  color: rgb(102, 99, 99);
 }
