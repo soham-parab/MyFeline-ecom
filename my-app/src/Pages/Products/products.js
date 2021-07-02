@@ -40,6 +40,9 @@ export function ProductListing() {
     <div className="productDiv">
       <div className="aside">
         <h2>Filter Items</h2>
+        <Link to="/login">
+          <button>LOGIN</button>
+        </Link>
         <label className="radio-label">
           <input
             className="radio-buttons"

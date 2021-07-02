@@ -13,20 +13,17 @@ export function Login() {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
   const { state } = useLocation();
-
+  console.log(state);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   async function loginHandler() {
     try {
-      const response = await axios.post(
-        "https://my-feline-rest-api.herokuapp.com/login",
-        {
-          email: email,
-          password: password,
-        }
-      );
+      const response = await axios.post("http://localhost:3400/login", {
+        email: email,
+        password: password,
+      });
       if (!response.data.token) {
         setError(response.data);
       } else {
@@ -35,7 +32,7 @@ export function Login() {
           localStorage.setItem("auth", JSON.stringify(prev));
           return prev;
         });
-
+        console.log(state);
         navigate(state?.from ? state.from : "/");
       }
     } catch (error) {
