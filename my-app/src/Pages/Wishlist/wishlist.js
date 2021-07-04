@@ -1,8 +1,11 @@
 import { useEffect } from "react";
-import { useProducts } from "../contexts/ProductContext";
+import { useProducts } from "../../contexts/ProductContext";
 import axios from "axios";
 import "./wishlist.css";
-import { deleteRequestWishlist, moveToCart } from "./utilities/utilities";
+import {
+  deleteRequestWishlist,
+  moveToCart,
+} from "../../components/utilities/utilities";
 
 export function Wishlist() {
   const { state, dispatch } = useProducts();
