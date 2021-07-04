@@ -8,9 +8,9 @@ import {
 import {
   getPriceRangeData,
   getSortedData,
-  useProducts,
-} from "../../contexts/ProductContext";
+} from "../../reducers/productReducer";
 import "./products.css";
+import { useProducts } from "../../contexts/ProductContext";
 
 export function ProductListing() {
   const { state, dispatch } = useProducts();
