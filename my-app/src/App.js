@@ -20,16 +20,16 @@ import { useAuth } from "./contexts/AuthContext";
 
 function App() {
   const { auth } = useAuth();
-  const { navigate } = useNavigate();
+  // const { navigate } = useNavigate();
 
-  function PrivateRoute({ path, ...props }) {
-    console.log(path, props, "llllllll");
-    return auth ? (
-      <Route {...props} path={path} />
-    ) : (
-      <Navigate state={{ from: path }} replace to="/login" />
-    );
-  }
+  // function PrivateRoute({ path, ...props }) {
+  //   console.log(path, props, "llllllll");
+  //   return auth ? (
+  //     <Route {...props} path={path} />
+  //   ) : (
+  //     <Navigate state={{ from: path }} replace to="/login" />
+  //   );
+  // }
   return (
     <div className="App">
       <div className="header"></div>

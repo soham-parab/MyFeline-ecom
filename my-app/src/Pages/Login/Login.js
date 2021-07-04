@@ -20,10 +20,13 @@ export function Login() {
 
   async function loginHandler() {
     try {
-      const response = await axios.post("http://localhost:3400/login", {
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        "https://my-feline-rest-api.herokuapp.com/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
       if (!response.data.token) {
         setError(response.data);
       } else {
