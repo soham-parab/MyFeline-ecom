@@ -9,9 +9,9 @@ import {
 } from "react-router-dom";
 import { ProductListing } from "../src/Pages/Products/products";
 import "./App.css";
-import { Cart } from "./components/cart";
+import { Cart } from "./Pages/Cart/cart";
 import { Nav } from "./components/nav/nav";
-import { ProductPage } from "./components/productpage";
+import { ProductPage } from "./Pages/Productpage/productpage";
 import { Wishlist } from "./components/wishlist";
 import { Homepage } from "./Pages/Homepage/Homepage";
 import { Login } from "./Pages/Login/Login";

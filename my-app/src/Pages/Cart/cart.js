@@ -1,4 +1,4 @@
-import { useProducts } from "../contexts/ProductContext";
+import { useProducts } from "../../contexts/ProductContext";
 import { useEffect } from "react";
 
 import "./cart.css";
@@ -11,7 +11,7 @@ import {
   itemPrice,
   moveToWishlist,
   priceProductTotal,
-} from "./utilities/utilities";
+} from "../../components/utilities/utilities";
 export function Cart() {
   const { state, dispatch } = useProducts();
 

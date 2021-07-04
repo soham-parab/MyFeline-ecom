@@ -1,7 +1,10 @@
 import "./productpage.css";
 import { useParams } from "react-router-dom";
-import { useProducts } from "../contexts/ProductContext";
-import { postRequestCart, postRequestWishlist } from "./utilities/utilities";
+import { useProducts } from "../../contexts/ProductContext";
+import {
+  postRequestCart,
+  postRequestWishlist,
+} from "../../components/utilities/utilities";
 
 export const ProductPage = () => {
   const { state } = useProducts();
