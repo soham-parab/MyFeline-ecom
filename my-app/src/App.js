@@ -1,5 +1,5 @@
 import { ProductListing } from "../src/Pages/Products/products";
-import "./App.css";
+
 import { Cart } from "./Pages/Cart/cart";
 import { Nav } from "./components/nav/nav";
 import { ProductPage } from "./Pages/Productpage/productpage";

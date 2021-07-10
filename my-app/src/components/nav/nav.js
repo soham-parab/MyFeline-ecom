@@ -2,8 +2,14 @@ import "./nav.css";
 import { Link } from "react-router-dom";
 import { FaCat, FaShoppingCart } from "react-icons/fa";
 import { BsHeartFill, BsFillHouseFill } from "react-icons/bs";
-
+import { useAuth } from "../../contexts/AuthContext";
 export function Nav() {
+  const { auth, setAuth } = useAuth();
+  function logoutHandler() {
+    setAuth(() => {
+      localStorage.removeItem("auth");
+    });
+  }
   return (
     <div className="main-nav-div">
       <div className="nav-header">
@@ -28,6 +34,19 @@ export function Nav() {
               Wishlist <BsHeartFill className="icon" />
             </Link>
           </li>
+          {!auth ? (
+            <li className="nav-item">
+              <Link className="link-nav" to="/login">
+                Login / Signup
+              </Link>
+            </li>
+          ) : (
+            <li className="nav-item">
+              <Link className="link-nav" onClick={logoutHandler} to="/login">
+                Signout
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>

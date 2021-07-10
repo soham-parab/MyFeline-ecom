@@ -20,7 +20,7 @@ export const ProductPage = () => {
           return (
             <div className="products-page-div">
               <div className="image-div">
-                <img className="item-image" src={item.images} />
+                <img className="item-image" src={item.images} alt="nevermind" />
               </div>
               <div className="product-div">
                 <h1 className="item-name">{item.name}</h1>
