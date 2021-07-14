@@ -6,15 +6,22 @@ import {
   deleteRequestWishlist,
   moveToCart,
 } from "../../components/utilities/utilities";
-
+import { useAuth } from "../../contexts/AuthContext";
 export function Wishlist() {
+  const { auth } = useAuth();
   const { state, dispatch } = useProducts();
 
   useEffect(() => {
     (async function () {
       try {
         const productData = await axios.get(
-          "https://my-feline-rest-api.herokuapp.com/wishlist"
+          "https://my-feline-rest-api.herokuapp.com/wishlist",
+
+          {
+            headers: {
+              "auth-token": auth.token,
+            },
+          }
         );
 
         dispatch({
@@ -50,7 +57,7 @@ export function Wishlist() {
                   <div className="horizCardFooter">
                     <button
                       onClick={() => {
-                        deleteRequestWishlist(item, dispatch);
+                        deleteRequestWishlist(item, dispatch, auth);
                       }}
                       className="horizFooterBtn secBtn"
                     >
@@ -59,8 +66,8 @@ export function Wishlist() {
 
                     <button
                       onClick={() => {
-                        moveToCart(item, dispatch);
-                        deleteRequestWishlist(item, dispatch);
+                        moveToCart(item, dispatch, auth);
+                        deleteRequestWishlist(item, dispatch, auth);
                       }}
                       className="horizFooterBtn"
                     >

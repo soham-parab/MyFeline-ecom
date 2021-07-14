@@ -5,10 +5,11 @@ import {
   postRequestCart,
   postRequestWishlist,
 } from "../../components/utilities/utilities";
-
+import { useAuth } from "../../contexts/AuthContext";
 export const ProductPage = () => {
   const { state } = useProducts();
   const { id } = useParams();
+  const { auth } = useAuth();
 
   return (
     <div>
@@ -33,13 +34,13 @@ export const ProductPage = () => {
                 </p>
                 <button
                   className="post-btn-cart"
-                  onClick={() => postRequestCart(item)}
+                  onClick={() => postRequestCart(item, auth)}
                 >
                   Add to Cart
                 </button>
                 <button
                   className="post-btn-wishlist"
-                  onClick={() => postRequestWishlist(item)}
+                  onClick={() => postRequestWishlist(item, auth)}
                 >
                   Add to Wishlist
                 </button>

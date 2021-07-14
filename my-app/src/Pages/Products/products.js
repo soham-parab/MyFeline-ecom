@@ -11,8 +11,9 @@ import {
 } from "../../reducers/productReducer";
 import "./products.css";
 import { useProducts } from "../../contexts/ProductContext";
-
+import { useAuth } from "../../contexts/AuthContext";
 export function ProductListing() {
+  const { auth } = useAuth();
   const { state, dispatch } = useProducts();
 
   useEffect(() => {
@@ -40,9 +41,6 @@ export function ProductListing() {
     <div className="productDiv">
       <div className="aside">
         <h2>Filter Items</h2>
-        <Link to="/login">
-          <button>LOGIN</button>
-        </Link>
         <label className="radio-label">
           <input
             className="radio-buttons"
@@ -138,7 +136,7 @@ export function ProductListing() {
                 <div className="btn-div">
                   <button
                     onClick={() => {
-                      postRequestCart(item);
+                      postRequestCart(item, auth);
                     }}
                     className="icon-button"
                   >
@@ -147,7 +145,7 @@ export function ProductListing() {
                   <button
                     className="icon-button"
                     onClick={() => {
-                      postRequestWishlist(item);
+                      postRequestWishlist(item, auth);
                     }}
                   >
                     {" "}

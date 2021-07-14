@@ -1,6 +1,6 @@
 import { useProducts } from "../../contexts/ProductContext";
 import { useEffect } from "react";
-
+import { useAuth } from "../../contexts/AuthContext";
 import "./cart.css";
 import { BsPlusSquare, BsDashSquare } from "react-icons/bs";
 import axios from "axios";
@@ -13,15 +13,21 @@ import {
   priceProductTotal,
 } from "../../components/utilities/utilities";
 export function Cart() {
+  const { auth } = useAuth();
   const { state, dispatch } = useProducts();
 
   useEffect(() => {
     (async function () {
       try {
         const productData = await axios.get(
-          "https://my-feline-rest-api.herokuapp.com/cart"
+          "https://my-feline-rest-api.herokuapp.com/cart",
+          {
+            headers: {
+              "auth-token": auth.token,
+            },
+          }
         );
-
+        console.log(productData.data);
         dispatch({
           type: "SET CART",
           payload: productData.data,
@@ -49,12 +55,16 @@ export function Cart() {
                       <p className="prdDescrip">{item.description}</p>
                       <div className="horizCardBtnDiv">
                         <BsPlusSquare
-                          onClick={() => incrementQuantity(item, dispatch)}
+                          onClick={() =>
+                            incrementQuantity(item, dispatch, auth)
+                          }
                           className="icon-button-quantity"
                         />
                         <span className="amt"> {item.quantity} </span>
                         <BsDashSquare
-                          onClick={() => decrementQuantity(item, dispatch)}
+                          onClick={() =>
+                            decrementQuantity(item, dispatch, auth)
+                          }
                           className="icon-button-quantity"
                         />
                       </div>
@@ -65,15 +75,15 @@ export function Cart() {
                   </div>
                   <div className="horizCardFooter">
                     <button
-                      onClick={() => deleteRequestCart(item, dispatch)}
+                      onClick={() => deleteRequestCart(item, dispatch, auth)}
                       className="horizFooterBtn secBtn"
                     >
                       Remove from Cart
                     </button>
                     <button
                       onClick={() => {
-                        moveToWishlist(item, dispatch);
-                        deleteRequestCart(item, dispatch);
+                        moveToWishlist(item, dispatch, auth);
+                        deleteRequestCart(item, dispatch, auth);
                       }}
                       className="horizFooterBtn"
                     >

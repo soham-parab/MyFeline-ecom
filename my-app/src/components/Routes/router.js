@@ -33,8 +33,8 @@ export function Router() {
     <>
       <Nav />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/products" element={<ProductListing />} />
+        {/* <Route path="/" element={<Homepage />} /> */}
+        <Route path="/" element={<ProductListing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <PrivateRoute path="/cart" element={<Cart />} />
