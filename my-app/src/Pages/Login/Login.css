@@ -1,4 +1,48 @@
-.input {
+/* .input {
   width: 50vw;
   height: 50vh;
+} */
+
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20vh;
+  padding: 2rem;
+}
+
+.main-div-two {
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid var(--primary-color);
+  padding: 2rem;
+  border-radius: 6px;
+}
+
+.input-login {
+  padding: 1.5rem;
+  border: 1px solid;
+  margin: 1rem;
+  border-radius: 7px;
+}
+
+.login-button {
+  padding: 0.7rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+.login-link {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 600;
 }

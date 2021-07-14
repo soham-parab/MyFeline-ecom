@@ -52,20 +52,40 @@ export function Register() {
   }
 
   return (
-    <div>
-      <input placeholder="Enter your name" onChange={nameHandler} />
-      <input placeholder="Enter your email" onChange={emailHandler} />
-      <input placeholder="Enter your password" onChange={passwordHandler} />
+    <div className="main-div">
+      <div className="main-div-two">
+        <input
+          className="input-register"
+          placeholder="Enter your name"
+          onChange={nameHandler}
+        />
+        <input
+          className="input-register"
+          placeholder="Enter your email"
+          onChange={emailHandler}
+        />
+        <input
+          type="password"
+          className="input-register"
+          placeholder="Enter your password"
+          onChange={passwordHandler}
+        />
 
-      <button onClick={registerUserHandler}>Register</button>
-      {error && (
-        <p className="errorMessage" style={{ color: "red" }}>
-          {error}
+        <button className="register-button" onClick={registerUserHandler}>
+          Register
+        </button>
+        {error && (
+          <p className="errorMessage" style={{ color: "red" }}>
+            {error}
+          </p>
+        )}
+        <p>
+          Already a user?{" "}
+          <Link className="register-link" to="/login">
+            Log In
+          </Link>
         </p>
-      )}
-      <p>
-        Already a user? <Link to="/login">Log In</Link>
-      </p>
+      </div>
     </div>
   );
 }
