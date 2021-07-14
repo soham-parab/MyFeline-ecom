@@ -7,7 +7,7 @@ export const postRequestCart = (prd, auth) => {
     (async function () {
       try {
         const response = await axios.post(
-          `http://localhost:3400/cart`,
+          `${baseURL}/cart`,
           {
             name: prd.name,
             description: prd.description,
@@ -40,7 +40,7 @@ export const postRequestWishlist = (prd, auth) => {
     (async function () {
       try {
         const response = await axios.post(
-          "https://my-feline-rest-api.herokuapp.com/wishlist",
+          `${baseURL}/wishlist`,
           {
             name: prd.name,
             description: prd.description,
@@ -71,14 +71,11 @@ export const deleteRequestCart = (prd, dispatch, auth) => {
   if (auth) {
     (async function () {
       try {
-        const response = await axios.delete(
-          `http://localhost:3400/cart/${prd._id}`,
-          {
-            headers: {
-              "auth-token": auth.token,
-            },
-          }
-        );
+        const response = await axios.delete(`${baseURL}/cart/${prd._id}`, {
+          headers: {
+            "auth-token": auth.token,
+          },
+        });
         console.log(response, "sadasd");
         dispatch({ type: "SET CART", payload: response.data });
       } catch (error) {
@@ -95,7 +92,7 @@ export const moveToWishlist = (prd, dispatch, auth) => {
     (async function () {
       try {
         const response = await axios.post(
-          "https://my-feline-rest-api.herokuapp.com/wishlist",
+          `${baseURL}/wishlist`,
 
           {
             name: prd.name,
@@ -128,7 +125,7 @@ export const incrementQuantity = (prd, dispatch, auth) => {
     (async function () {
       try {
         const response = await axios.patch(
-          `https://my-feline-rest-api.herokuapp.com/cart/${prd._id}`,
+          `${baseURL}/cart/${prd._id}`,
           {
             quantity: prd.quantity + 1,
           },
@@ -156,12 +153,9 @@ export const decrementQuantity = (prd, dispatch, auth) => {
     } else {
       (async function () {
         try {
-          const response = await axios.patch(
-            `https://my-feline-rest-api.herokuapp.com/cart/${prd._id}`,
-            {
-              quantity: prd.quantity - 1,
-            }
-          );
+          const response = await axios.patch(`${baseURL}/cart/${prd._id}`, {
+            quantity: prd.quantity - 1,
+          });
           console.log(response);
           dispatch({ type: "SET CART", payload: response.data });
         } catch (error) {
@@ -178,14 +172,11 @@ export const deleteRequestWishlist = (prd, dispatch, auth) => {
   if (auth) {
     (async function () {
       try {
-        const response = await axios.delete(
-          `https://my-feline-rest-api.herokuapp.com/wishlist/${prd._id}`,
-          {
-            headers: {
-              "auth-token": auth.token,
-            },
-          }
-        );
+        const response = await axios.delete(`${baseURL}/wishlist/${prd._id}`, {
+          headers: {
+            "auth-token": auth.token,
+          },
+        });
         console.log(response, "sadasd");
         dispatch({ type: "SET WISHLIST", payload: response.data });
       } catch (error) {
@@ -202,7 +193,7 @@ export const moveToCart = (prd, dispatch, auth) => {
     (async function () {
       try {
         const response = await axios.post(
-          "https://my-feline-rest-api.herokuapp.com/cart",
+          `${baseURL}/cart`,
           {
             name: prd.name,
             description: prd.description,
