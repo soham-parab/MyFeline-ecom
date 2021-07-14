@@ -7,11 +7,11 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import { baseURL } from "../../components/utilities/baseURL";
 
 export function Register() {
   const navigate = useNavigate();
   const { state } = useLocation();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,14 +19,11 @@ export function Register() {
 
   async function registerUserHandler() {
     try {
-      const response = await axios.post(
-        "https://my-feline-rest-api.herokuapp.com/register",
-        {
-          name: name,
-          email: email,
-          password: password,
-        }
-      );
+      const response = await axios.post(`${baseURL}/register`, {
+        name: name,
+        email: email,
+        password: password,
+      });
 
       if (!response.data.User) {
         setError(response.data);

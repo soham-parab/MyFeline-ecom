@@ -11,8 +11,6 @@ import { useAuth } from "./contexts/AuthContext";
 import { Router } from "./components/Routes/router";
 
 function App() {
-  const { auth } = useAuth();
-
   return (
     <div className="App">
       <div className="header"></div>

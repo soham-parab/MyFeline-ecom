@@ -12,6 +12,7 @@ import {
   moveToWishlist,
   priceProductTotal,
 } from "../../components/utilities/utilities";
+import { baseURL } from "../../components/utilities/baseURL";
 export function Cart() {
   const { auth } = useAuth();
   const { state, dispatch } = useProducts();
@@ -19,14 +20,11 @@ export function Cart() {
   useEffect(() => {
     (async function () {
       try {
-        const productData = await axios.get(
-          "https://my-feline-rest-api.herokuapp.com/cart",
-          {
-            headers: {
-              "auth-token": auth.token,
-            },
-          }
-        );
+        const productData = await axios.get(`${baseURL}/cart`, {
+          headers: {
+            "auth-token": auth.token,
+          },
+        });
         console.log(productData.data);
         dispatch({
           type: "SET CART",

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
+import { baseURL } from "./baseURL";
 
-const baseURL = "https://my-feline-rest-api.herokuapp.com";
 export const postRequestCart = (prd, auth) => {
   if (auth) {
     (async function () {
