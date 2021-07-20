@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useAuth } from "../../contexts/AuthContext";
 import { baseURL } from "./baseURL";
 
 export const postRequestCart = (prd, auth) => {
