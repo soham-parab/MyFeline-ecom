@@ -50,7 +50,7 @@ export function Cart() {
                     </div>
                     <div className="HorizCardDetails">
                       <div className="brandTitle">{item.name}</div>
-                      <p className="prdDescrip">{item.description}</p>
+                      <p className="prdDescripp">{item.description}</p>
                       <div className="horizCardBtnDiv">
                         <BsPlusSquare
                           onClick={() =>
@@ -71,10 +71,10 @@ export function Cart() {
                       </div>
                     </div>
                   </div>
-                  <div className="horizCardFooter">
+                  <div className="horizCardFootera">
                     <button
                       onClick={() => deleteRequestCart(item, dispatch, auth)}
-                      className="horizFooterBtn secBtn"
+                      className="horizFooterBtna secBtn"
                     >
                       Remove from Cart
                     </button>
@@ -83,7 +83,7 @@ export function Cart() {
                         moveToWishlist(item, dispatch, auth);
                         deleteRequestCart(item, dispatch, auth);
                       }}
-                      className="horizFooterBtn"
+                      className="horizFooterBtna"
                     >
                       Move to Wishlist
                     </button>

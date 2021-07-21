@@ -148,17 +148,25 @@ export const incrementQuantity = (prd, dispatch, auth) => {
 export const decrementQuantity = (prd, dispatch, auth) => {
   if (auth) {
     if (prd.quantity === 1) {
-      deleteRequestCart(prd, dispatch);
+      deleteRequestCart(prd, dispatch, auth);
     } else {
       (async function () {
         try {
-          const response = await axios.patch(`${baseURL}/cart/${prd._id}`, {
-            quantity: prd.quantity - 1,
-          });
+          const response = await axios.patch(
+            `${baseURL}/cart/${prd._id}`,
+            {
+              quantity: prd.quantity - 1,
+            },
+            {
+              headers: {
+                "auth-token": auth.token,
+              },
+            }
+          );
           console.log(response);
           dispatch({ type: "SET CART", payload: response.data });
         } catch (error) {
-          console.log(error);
+          console.log(error.response.data);
         }
       })();
     }

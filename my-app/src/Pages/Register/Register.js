@@ -33,7 +33,7 @@ export function Register() {
         setStatus("idle");
         setError(response.data);
       } else {
-        navigate(state?.from ? state.from : "/");
+        navigate("/login");
       }
     } catch (err) {
       setStatus("idle");

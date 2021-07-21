@@ -34,7 +34,6 @@ export function ProductListing() {
   }, []);
 
   let sortedData = getSortedData(state.products, state.sortBy);
-
   let priceRangeData = getPriceRangeData(sortedData, state.price_range);
 
   return (

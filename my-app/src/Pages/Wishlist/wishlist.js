@@ -48,7 +48,7 @@ export function Wishlist() {
                     <div className="brandTitle">{item.name}</div>
 
                     <div className="prdPrice">
-                      <b>{item.price}</b>
+                      <b>Rs {item.price}/-</b>
                     </div>
                   </div>
                   <div className="horizCardFooter">
@@ -56,7 +56,7 @@ export function Wishlist() {
                       onClick={() => {
                         deleteRequestWishlist(item, dispatch, auth);
                       }}
-                      className="horizFooterBtn secBtn"
+                      className="horizFooterBtnn secBtn"
                     >
                       Remove from Wishlist
                     </button>
@@ -66,7 +66,7 @@ export function Wishlist() {
                         moveToCart(item, dispatch, auth);
                         deleteRequestWishlist(item, dispatch, auth);
                       }}
-                      className="horizFooterBtn"
+                      className="horizFooterBtnn"
                     >
                       Move to Cart
                     </button>

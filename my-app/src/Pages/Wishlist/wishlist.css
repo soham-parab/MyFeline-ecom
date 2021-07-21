@@ -1,114 +1,122 @@
 .horizCardParent {
-   width: 50vw;
-   background-color: #f3f4f6;
-   border: 1px solid #3b82f6;
+  width: 50vw;
+  background-color: #f3f4f6;
+  border: 1px solid #3b82f6;
 }
 
 .horizCardBody {
-   display: flex;
-   flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .HorizCardDetails {
-   padding: 1rem;
+  padding: 1rem;
 }
 
 .HorizImgDiv {
-   height: 10rem;
-   width: 10rem;
-   padding: 1rem;
+  height: 10rem;
+  width: 10rem;
+  padding: 1rem;
 }
 
 .HorizImgDiv img {
-   height: 100%;
-   width: 100%;
-   object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .brandTitle {
-   padding: 0.1rem 0;
-   font-size: 1.2rem;
-   color: #282c3f;
+  padding: 0.1rem 0;
+  font-size: 1.2rem;
+  color: #282c3f;
+  font-weight: bold;
 }
 
 .cart-parent {
-   display: flex;
-   margin-top: 10vh;
-   margin-left: 5rem;
+  display: flex;
+  margin-top: 10vh;
+  margin-left: 5rem;
 }
 
 .horizCardParent {
-   margin-top: 2rem;
-   border: 1px solid var(--primary-color);
-   overflow-y: hidden;
+  margin-top: 2rem;
+  border: 1px solid var(--primary-color);
+  overflow-y: hidden;
 }
 
 .HorizImgDiv {
-   overflow-y: hidden;
+  overflow-y: hidden;
 }
 
 .paymentContainer {
-   /* position: fixed; */
-   right: 0;
-   padding: 0.5rem;
-   border: 1px solid var(--primary-color);
-   margin: 1rem;
-   width: 30vw;
-   height: 20vh;
+  /* position: fixed; */
+  right: 0;
+  padding: 0.5rem;
+  border: 1px solid var(--primary-color);
+  margin: 1rem;
+  width: 30vw;
+  height: 20vh;
 }
 
 .paymentSect {
-   display: flex;
-   justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .paymentSectTitle,
 .paymentAmt {
-   padding: 1rem;
-   color: #282c3f;
+  padding: 1rem;
+  color: #282c3f;
 }
 
 .paymentAmt.discAmt {
-   color: green;
+  color: green;
 }
 
 .paymentSect.paymentSectTotal {
-   border-top: 1px solid #282c3f;
-   font-weight: bold;
+  border-top: 1px solid #282c3f;
+  font-weight: bold;
 }
 
 .payment-main {
-   display: flex;
-   align-items: center;
-   position: fixed;
-   height: 90vh;
-   width: 40vw;
-   right: 0;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  height: 90vh;
+  width: 40vw;
+  right: 0;
 }
 
 .icon-button-quantity {
-   color: black;
-   cursor: pointer;
-   margin-top: 0.5rem;
+  color: black;
+  cursor: pointer;
+  margin-top: 0.5rem;
 }
 
 .horizCardFooter {
-   display: flex;
-   justify-content: flex-end;
+  display: flex;
+  /* justify-content: flex-end; */
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
-.horizFooterBtn {
-   margin-bottom: 2rem;
-   margin-right: 2rem;
-   padding: 0.6rem;
-   cursor: pointer;
-   background-color: var(--primary-color);
-   border: none;
-   color: white;
-   border-radius: 4px;
+.horizFooterBtnn {
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  border-radius: 4px;
 }
 
 .horizFooterBtn:hover {
-   background-color: #001224;
-   color: white;
+  background-color: #001224;
+  color: white;
+}
+
+.prdDescrip {
+  padding-left: 1.2rem;
 }

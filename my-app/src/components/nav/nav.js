@@ -1,9 +1,11 @@
 import "./nav.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaCat, FaShoppingCart } from "react-icons/fa";
 import { BsHeartFill, BsFillHouseFill } from "react-icons/bs";
 import { useAuth } from "../../contexts/AuthContext";
+
 export function Nav() {
+  const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
   function logoutHandler() {
     setAuth(() => {
@@ -13,8 +15,13 @@ export function Nav() {
   return (
     <div className="main-nav-div">
       <div className="nav-header">
-        <p className="para">
-          MyFeline <FaCat />
+        <p
+          onClick={() => {
+            navigate("/");
+          }}
+          className="para"
+        >
+          MyFeline <FaCat />{" "}
         </p>
       </div>
       <div className="nav-div">

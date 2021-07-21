@@ -3,7 +3,6 @@
 .card-parent {
   display: flex;
   flex-wrap: wrap;
-
   margin: 2rem;
   margin-left: 16%;
   justify-content: center;
@@ -26,9 +25,11 @@ h2 {
 }
 
 .aside {
+  justify-content: top;
+  align-items: flex-start;
   background-color: #f3f4f6;
   width: 15%;
-  padding: 1rem;
+  padding: 2rem;
   position: fixed;
   height: 90vh;
   top: 12vh;
@@ -76,4 +77,8 @@ h2 {
 
 label {
   color: black;
+  font-weight: bold;
+  padding-top: 2rem;
+  padding: 0.5rem;
+  margin: 0.2rem;
 }

@@ -58,6 +58,12 @@
   cursor: pointer;
 }
 
+.post-btn-cart:hover,
+.post-btn-wishlist:hover {
+  background-color: rgb(24, 24, 32);
+  color: white;
+}
+
 .item-brand,
 .item-price,
 .item-rating,
