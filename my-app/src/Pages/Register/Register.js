@@ -8,16 +8,20 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { baseURL } from "../../components/utilities/baseURL";
-
+import { useAuth } from "../../contexts/AuthContext";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/spinner";
 export function Register() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
-
+  const { auth, setAuth } = useAuth();
   async function registerUserHandler() {
+    setStatus("loading");
     try {
       const response = await axios.post(`${baseURL}/register`, {
         name: name,
@@ -26,13 +30,15 @@ export function Register() {
       });
 
       if (!response.data.User) {
+        setStatus("idle");
         setError(response.data);
       } else {
         navigate(state?.from ? state.from : "/");
       }
     } catch (err) {
+      setStatus("idle");
       console.log(err);
-      setError("something went wrong");
+      setError(err.response.data);
     }
   }
 
@@ -68,9 +74,10 @@ export function Register() {
           onChange={passwordHandler}
         />
 
-        <button className="register-button" onClick={registerUserHandler}>
-          Register
-        </button>
+        <Button className="register-button" onClick={registerUserHandler}>
+          {status === "idle" && <span>Register</span>}
+          {status === "loading" && <Spinner />}
+        </Button>
         {error && (
           <p className="errorMessage" style={{ color: "red" }}>
             {error}
@@ -78,7 +85,7 @@ export function Register() {
         )}
         <p>
           Already a user?{" "}
-          <Link className="register-link" to="/login">
+          <Link className="login-link" to="/login">
             Log In
           </Link>
         </p>

@@ -8,7 +8,8 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useState } from "react";
-
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/spinner";
 export function Login() {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
@@ -17,9 +18,11 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [status, setStatus] = useState("idle");
 
   async function loginHandler() {
     try {
+      setStatus("loading");
       const response = await axios.post(
         "https://my-feline-rest-api.herokuapp.com/login",
         {
@@ -28,18 +31,22 @@ export function Login() {
         }
       );
       if (!response.data.token) {
+        setStatus("idle");
         setError(response.data);
       } else {
         setAuth(response.data);
         setAuth((prev) => {
           localStorage.setItem("auth", JSON.stringify(prev));
+          setStatus("idle");
           return prev;
         });
         console.log(state);
         navigate(state?.from ? state.from : "/");
       }
     } catch (error) {
-      console.log(error);
+      setStatus("idle");
+      setError(error.response.data);
+      console.log(error.response.data);
     }
   }
 
@@ -57,6 +64,7 @@ export function Login() {
     <div className="main-div">
       <div className="main-div-two">
         <input
+          type="email"
           className="input-login"
           placeholder="Enter your email"
           onChange={emailHandler}
@@ -68,20 +76,21 @@ export function Login() {
           onChange={passwordHandler}
         />
 
-        <button className="login-button" onClick={loginHandler}>
-          Login
-        </button>
+        <Button className="login-button" onClick={loginHandler}>
+          {status === "idle" && <span>Log In</span>}
+          {status === "loading" && <Spinner />}
+        </Button>
 
         {error && (
-          <p className="errorMessage" style={{ color: "red" }}>
+          <p className="errorMessage" style={{ color: "red", padding: "1rem" }}>
             {error}
           </p>
         )}
 
         <p>
-          Don't have an account,{" "}
-          <Link className="login-link" to="/register">
-            Create Account
+          Don't have an account?{" "}
+          <Link className="signup-link" to="/register">
+            Register
           </Link>
         </p>
       </div>

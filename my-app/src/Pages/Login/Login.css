@@ -31,6 +31,10 @@
   border-radius: 7px;
 }
 
+.input-login:focus {
+  border-radius: 7px;
+}
+
 .login-button {
   padding: 0.7rem 1rem;
   background-color: var(--primary-color);
@@ -41,8 +45,17 @@
   margin: 1rem;
 }
 
-.login-link {
+.login-button:hover {
+  background-color: rgb(24, 24, 32);
+  color: white;
+}
+
+.signup-link {
   text-decoration: none;
   color: var(--primary-color);
   font-weight: 600;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
 }

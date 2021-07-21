@@ -36,13 +36,17 @@ export function Nav() {
           </li>
           {!auth ? (
             <li className="nav-item">
-              <Link className="link-nav" to="/login">
+              <Link className="link-nav-log" to="/login">
                 Login / Signup
               </Link>
             </li>
           ) : (
             <li className="nav-item">
-              <Link className="link-nav" onClick={logoutHandler} to="/login">
+              <Link
+                className="link-nav-log"
+                onClick={logoutHandler}
+                to="/login"
+              >
                 Signout
               </Link>
             </li>
