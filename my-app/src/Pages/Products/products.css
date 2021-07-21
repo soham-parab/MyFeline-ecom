@@ -29,7 +29,7 @@ h2 {
   align-items: flex-start;
   background-color: #f3f4f6;
   width: 15%;
-  padding: 2rem;
+  padding: 1.5rem;
   position: fixed;
   height: 90vh;
   top: 12vh;
@@ -49,12 +49,13 @@ h2 {
   display: inline-block;
   width: 5vw;
   align-self: center;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.75rem;
   background-color: var(--primary-color);
   border-radius: 4px;
   color: white;
   border: none;
   cursor: pointer;
+  margin: 1rem;
 }
 
 .radio-buttons {
@@ -68,6 +69,7 @@ h2 {
 
 .price-button {
   cursor: pointer;
+  padding: 1rem 0;
 }
 
 .product-title {

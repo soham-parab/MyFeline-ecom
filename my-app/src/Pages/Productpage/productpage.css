@@ -13,7 +13,7 @@
 }
 
 .product-div {
-  width: 50%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,6 +41,7 @@
 .item-total-rating {
   font-weight: 500;
   padding: 0.5rem;
+  align-self: center;
 }
 .item-name,
 .item-descrip {
@@ -49,7 +50,7 @@
 
 .post-btn-cart,
 .post-btn-wishlist {
-  padding: 0.7rem 0.5rem;
+  padding: 0.7rem 0.9rem;
   margin-top: 1rem;
   border-radius: 4px;
   background-color: var(--primary-color);

@@ -69,7 +69,7 @@ export function ProductListing() {
         </label>
         <br />
         <label className="radio-label">
-          Price Range:-{" "}
+          Price Range:- Rs {state.price_range}/-
           <input
             className="price-button"
             type="range"
@@ -82,12 +82,6 @@ export function ProductListing() {
           />
         </label>
         <br />
-        <button
-          className="reset-button"
-          onClick={() => dispatch({ type: "RESET" })}
-        >
-          RESET
-        </button>
         <label>
           <input
             onClick={() => dispatch({ type: "IN STOCK", payload: "true" })}
@@ -112,6 +106,12 @@ export function ProductListing() {
           <input type="checkbox" name="Gravy food." />
           Gravy food
         </label>
+        <button
+          className="reset-button"
+          onClick={() => dispatch({ type: "RESET" })}
+        >
+          RESET
+        </button>
       </div>
 
       <div className="card-parent">
