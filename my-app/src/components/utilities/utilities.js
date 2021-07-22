@@ -34,6 +34,9 @@ export const postRequestCart = (prd, auth, toast) => {
     })();
   } else {
     console.log("please login");
+    toast("Please login!", {
+      type: "warning",
+    });
   }
 };
 
@@ -69,6 +72,9 @@ export const postRequestWishlist = (prd, auth, toast) => {
     })();
   } else {
     console.log("please login");
+    toast("Please login!", {
+      type: "warning",
+    });
   }
 };
 

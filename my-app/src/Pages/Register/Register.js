@@ -11,6 +11,7 @@ import { baseURL } from "../../components/utilities/baseURL";
 import { useAuth } from "../../contexts/AuthContext";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Spinner } from "@chakra-ui/spinner";
+import { useToast } from "../../contexts/toastContext";
 export function Register() {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -20,6 +21,7 @@ export function Register() {
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
   const { auth, setAuth } = useAuth();
+  const { toast } = useToast();
   async function registerUserHandler() {
     setStatus("loading");
     try {
@@ -35,6 +37,9 @@ export function Register() {
       } else {
         navigate("/login");
       }
+      toast("Account Created!", {
+        type: "success",
+      });
     } catch (err) {
       setStatus("idle");
       console.log(err);

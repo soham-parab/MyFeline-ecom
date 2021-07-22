@@ -3,13 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaCat, FaShoppingCart } from "react-icons/fa";
 import { BsHeartFill, BsFillHouseFill } from "react-icons/bs";
 import { useAuth } from "../../contexts/AuthContext";
+import { useToast } from "../../contexts/toastContext";
 
 export function Nav() {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const { auth, setAuth } = useAuth();
   function logoutHandler() {
     setAuth(() => {
       localStorage.removeItem("auth");
+    });
+    toast("Logged out!", {
+      type: "info",
     });
   }
   return (

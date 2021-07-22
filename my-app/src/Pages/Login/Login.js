@@ -9,9 +9,11 @@ import {
 } from "react-router-dom";
 import { useState } from "react";
 import { Button, ButtonGroup } from "@chakra-ui/react";
+import { useToast } from "../../contexts/toastContext";
 import { Spinner } from "@chakra-ui/spinner";
 export function Login() {
   const { auth, setAuth } = useAuth();
+  const { toast } = useToast();
   const navigate = useNavigate();
   const { state } = useLocation();
   console.log(state);
@@ -43,6 +45,9 @@ export function Login() {
         console.log(state);
         navigate(state?.from ? state.from : "/");
       }
+      toast("Logged In!", {
+        type: "success",
+      });
     } catch (error) {
       setStatus("idle");
       setError(error.response.data);
