@@ -12,7 +12,7 @@ export const ProductPage = () => {
   const { state } = useProducts();
   const { id } = useParams();
   const { auth } = useAuth();
-  const toast = useToast();
+  const { toast } = useToast();
 
   return (
     <div>

@@ -19,7 +19,7 @@ import { PayPal } from "../../components/Payment/PayPal";
 import { useToast } from "../../contexts/toastContext";
 export function Cart() {
   const [checkout, setCheckout] = useState(false);
-  const toast = useToast();
+  const { toast } = useToast();
   const { auth } = useAuth();
   const { state, dispatch } = useProducts();
 
