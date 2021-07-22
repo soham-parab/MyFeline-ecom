@@ -15,19 +15,14 @@ import { Login } from "../../Pages/Login/Login";
 import { Register } from "../../Pages/Register/Register";
 import { useAuth } from "../../contexts/AuthContext";
 import { ProductListing } from "../../Pages/Products/products";
-import { Homepage } from "../../Pages/Homepage/Homepage";
+import { PayPal } from "../Payment/PayPal";
+import { itemPrice } from "../utilities/utilities";
+import { useProducts } from "../../contexts/ProductContext";
+import { PrivateRoute } from "./PrivateRoute";
 
 export function Router() {
+  const { state } = useProducts();
   const { auth } = useAuth();
-
-  function PrivateRoute({ path, ...props }) {
-    console.log(path, props, "llllllll");
-    return auth ? (
-      <Route {...props} path={path} />
-    ) : (
-      <Navigate state={{ from: path }} replace to="/login" />
-    );
-  }
 
   return (
     <>

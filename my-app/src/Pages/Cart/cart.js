@@ -1,8 +1,9 @@
 import { useProducts } from "../../contexts/ProductContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import "./cart.css";
 import { BsPlusSquare, BsDashSquare } from "react-icons/bs";
+
 import axios from "axios";
 import {
   decrementQuantity,
@@ -13,10 +14,16 @@ import {
   priceProductTotal,
 } from "../../components/utilities/utilities";
 import { baseURL } from "../../components/utilities/baseURL";
+import { Button } from "@chakra-ui/react";
+import { PayPal } from "../../components/Payment/PayPal";
+import { useToast } from "../../contexts/toastContext";
 export function Cart() {
+  const [checkout, setCheckout] = useState(false);
+  const toast = useToast();
   const { auth } = useAuth();
   const { state, dispatch } = useProducts();
 
+  document.title = `${auth.userExists.name}'s cart`;
   useEffect(() => {
     (async function () {
       try {
@@ -35,10 +42,14 @@ export function Cart() {
       }
     })();
   }, []);
-
+  console.log(state.cart);
   return (
     <div className="cart-parent">
       <div className="card-holder">
+        {state.cart?.length === 0 && (
+          <h1>{auth.userExists.name}, your cart is empty! </h1>
+        )}
+        {console.log(state.cart.length)}
         {state &&
           state.cart.map((item) => {
             return (
@@ -73,16 +84,18 @@ export function Cart() {
                   </div>
                   <div className="horizCardFootera">
                     <button
-                      onClick={() => deleteRequestCart(item, dispatch, auth)}
+                      onClick={() => {
+                        deleteRequestCart(item, dispatch, auth, toast);
+                      }}
                       className="horizFooterBtna secBtn"
                     >
                       Remove from Cart
                     </button>
                     <button
-                      onClick={() => {
-                        moveToWishlist(item, dispatch, auth);
-                        deleteRequestCart(item, dispatch, auth);
-                      }}
+                      onClick={
+                        (() => moveToWishlist(item, dispatch, auth, toast),
+                        () => deleteRequestCart(item, dispatch, auth, toast))
+                      }
                       className="horizFooterBtna"
                     >
                       Move to Wishlist
@@ -110,6 +123,10 @@ export function Cart() {
             <div className="paymentAmt ">{itemPrice(state)}</div>
           </div>
         </div>
+        <Button onClick={() => setCheckout(true)} className="checkout">
+          Checkout
+        </Button>
+        {checkout && <PayPal totalPrice={itemPrice(state)} />}
       </div>
     </div>
   );

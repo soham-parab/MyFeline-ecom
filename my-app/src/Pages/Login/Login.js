@@ -76,7 +76,12 @@ export function Login() {
           onChange={passwordHandler}
         />
 
-        <Button className="login-button" onClick={loginHandler}>
+        <Button
+          overflowY="hidden"
+          padding="1rem"
+          className="login-button"
+          onClick={loginHandler}
+        >
           {status === "idle" && <span>Log In</span>}
           {status === "loading" && <Spinner />}
         </Button>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { baseURL } from "./baseURL";
 
-export const postRequestCart = (prd, auth) => {
+export const postRequestCart = (prd, auth, toast) => {
   if (auth) {
     (async function () {
       try {
@@ -25,6 +25,9 @@ export const postRequestCart = (prd, auth) => {
           }
         );
         console.log(response, "adawda");
+        toast("Item added to cart!", {
+          type: "success",
+        });
       } catch (error) {
         console.log(error);
       }
@@ -34,7 +37,7 @@ export const postRequestCart = (prd, auth) => {
   }
 };
 
-export const postRequestWishlist = (prd, auth) => {
+export const postRequestWishlist = (prd, auth, toast) => {
   if (auth) {
     (async function () {
       try {
@@ -57,6 +60,9 @@ export const postRequestWishlist = (prd, auth) => {
             },
           }
         );
+        toast("Item added to wishlist!", {
+          type: "success",
+        });
       } catch (error) {
         console.log(error);
       }
@@ -66,7 +72,7 @@ export const postRequestWishlist = (prd, auth) => {
   }
 };
 
-export const deleteRequestCart = (prd, dispatch, auth) => {
+export const deleteRequestCart = (prd, dispatch, auth, toast) => {
   if (auth) {
     (async function () {
       try {
@@ -76,6 +82,10 @@ export const deleteRequestCart = (prd, dispatch, auth) => {
           },
         });
         console.log(response, "sadasd");
+        toast("Item deleted from cart!", {
+          type: "info",
+        });
+
         dispatch({ type: "SET CART", payload: response.data });
       } catch (error) {
         console.log(error);
@@ -86,7 +96,7 @@ export const deleteRequestCart = (prd, dispatch, auth) => {
   }
 };
 
-export const moveToWishlist = (prd, dispatch, auth) => {
+export const moveToWishlist = (prd, dispatch, auth, toast) => {
   if (auth) {
     (async function () {
       try {
@@ -110,6 +120,9 @@ export const moveToWishlist = (prd, dispatch, auth) => {
             },
           }
         );
+        toast("Item moved to wishlist!", {
+          type: "success",
+        });
       } catch (error) {
         console.log(error);
       }
@@ -134,6 +147,7 @@ export const incrementQuantity = (prd, dispatch, auth) => {
             },
           }
         );
+
         console.log(response);
         dispatch({ type: "SET CART", payload: response.data });
       } catch (error) {
@@ -175,7 +189,7 @@ export const decrementQuantity = (prd, dispatch, auth) => {
   }
 };
 
-export const deleteRequestWishlist = (prd, dispatch, auth) => {
+export const deleteRequestWishlist = (prd, dispatch, auth, toast) => {
   if (auth) {
     (async function () {
       try {
@@ -183,6 +197,9 @@ export const deleteRequestWishlist = (prd, dispatch, auth) => {
           headers: {
             "auth-token": auth.token,
           },
+        });
+        toast("Item deleted from wishlist!", {
+          type: "info",
         });
         console.log(response, "sadasd");
         dispatch({ type: "SET WISHLIST", payload: response.data });
@@ -195,7 +212,7 @@ export const deleteRequestWishlist = (prd, dispatch, auth) => {
   }
 };
 
-export const moveToCart = (prd, dispatch, auth) => {
+export const moveToCart = (prd, dispatch, auth, toast) => {
   if (auth) {
     (async function () {
       try {
@@ -218,6 +235,9 @@ export const moveToCart = (prd, dispatch, auth) => {
             },
           }
         );
+        toast("Item moved to cart!", {
+          type: "success",
+        });
       } catch (error) {
         console.log(error);
       }
@@ -232,7 +252,6 @@ export const itemPrice = (easy) => {
   easy.cart.map((item) => {
     total = total + item.price * item.quantity;
   });
-
   return total;
 };
 

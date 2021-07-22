@@ -12,9 +12,11 @@ import {
 import "./products.css";
 import { useProducts } from "../../contexts/ProductContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { useToast } from "../../contexts/toastContext";
 export function ProductListing() {
   const { auth } = useAuth();
   const { state, dispatch } = useProducts();
+  const { toast } = useToast();
 
   useEffect(() => {
     (async function () {
@@ -135,7 +137,7 @@ export function ProductListing() {
                 <div className="btn-div">
                   <button
                     onClick={() => {
-                      postRequestCart(item, auth);
+                      postRequestCart(item, auth, toast);
                     }}
                     className="icon-button"
                   >
@@ -144,7 +146,7 @@ export function ProductListing() {
                   <button
                     className="icon-button"
                     onClick={() => {
-                      postRequestWishlist(item, auth);
+                      postRequestWishlist(item, auth, toast);
                     }}
                   >
                     {" "}

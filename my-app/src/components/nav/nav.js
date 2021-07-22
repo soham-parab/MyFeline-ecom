@@ -26,6 +26,9 @@ export function Nav() {
       </div>
       <div className="nav-div">
         <ul className="nav">
+          {auth ? (
+            <h3 className="user-name">Hi {auth.userExists.name}!</h3>
+          ) : null}
           <li className="nav-item">
             <Link className="link-nav" to="/">
               Home <BsFillHouseFill className="icon" />

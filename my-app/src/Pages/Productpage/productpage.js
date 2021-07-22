@@ -6,37 +6,13 @@ import {
   postRequestWishlist,
 } from "../../components/utilities/utilities";
 import { useAuth } from "../../contexts/AuthContext";
-import { useToast, Wrap, Button, WrapItem } from "@chakra-ui/react";
+import { useToast } from "../../contexts/toastContext";
 
 export const ProductPage = () => {
   const { state } = useProducts();
   const { id } = useParams();
   const { auth } = useAuth();
-
-  function ToastStatusExample() {
-    const toast = useToast();
-    const statuses = ["success", "error", "warning", "info"];
-
-    return (
-      <Wrap>
-        {statuses.map((status, i) => (
-          <WrapItem key={i}>
-            <Button
-              onClick={() =>
-                toast({
-                  title: `${status} toast`,
-                  status: status,
-                  isClosable: true,
-                })
-              }
-            >
-              Show {status} toast
-            </Button>
-          </WrapItem>
-        ))}
-      </Wrap>
-    );
-  }
+  const toast = useToast();
 
   return (
     <div>
@@ -61,13 +37,14 @@ export const ProductPage = () => {
                 </p>
                 <button
                   className="post-btn-cart"
-                  onClick={() => postRequestCart(item, auth)}
+                  onClick={() => postRequestCart(item, auth, toast)}
                 >
                   Add to Cart
                 </button>
+
                 <button
                   className="post-btn-wishlist"
-                  onClick={() => postRequestWishlist(item, auth)}
+                  onClick={() => postRequestWishlist(item, auth, toast)}
                 >
                   Add to Wishlist
                 </button>

@@ -58,6 +58,12 @@ h2 {
   margin: 1rem;
 }
 
+.reset-button:hover {
+  background-color: rgb(24, 24, 32);
+  color: white;
+  transition: 300ms;
+}
+
 .radio-buttons {
   cursor: pointer;
 }
@@ -83,4 +89,9 @@ label {
   padding-top: 2rem;
   padding: 0.5rem;
   margin: 0.2rem;
+}
+
+.icon-button:hover {
+  background-color: rgb(24, 24, 32) !important;
+  color: white !important;
 }

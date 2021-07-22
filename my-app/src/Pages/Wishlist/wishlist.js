@@ -8,9 +8,12 @@ import {
 } from "../../components/utilities/utilities";
 import { useAuth } from "../../contexts/AuthContext";
 import { baseURL } from "../../components/utilities/baseURL";
+import { useToast } from "../../contexts/toastContext";
 export function Wishlist() {
+  const { toast } = useToast();
   const { auth } = useAuth();
   const { state, dispatch } = useProducts();
+  document.title = `${auth.userExists.name}'s cart`;
 
   useEffect(() => {
     (async function () {
@@ -34,6 +37,9 @@ export function Wishlist() {
   return (
     <div className="cart-parent">
       <div className="card-holder">
+        {state.wishlist?.length === 0 && (
+          <h1>{auth.userExists.name}, your wishlist is empty! </h1>
+        )}
         {state.wishlist.map((item) => {
           return (
             <div>
@@ -46,7 +52,6 @@ export function Wishlist() {
 
                   <div className="HorizCardDetails">
                     <div className="brandTitle">{item.name}</div>
-
                     <div className="prdPrice">
                       <b>Rs {item.price}/-</b>
                     </div>
@@ -54,7 +59,7 @@ export function Wishlist() {
                   <div className="horizCardFooter">
                     <button
                       onClick={() => {
-                        deleteRequestWishlist(item, dispatch, auth);
+                        deleteRequestWishlist(item, dispatch, auth, toast);
                       }}
                       className="horizFooterBtnn secBtn"
                     >
@@ -63,8 +68,8 @@ export function Wishlist() {
 
                     <button
                       onClick={() => {
-                        moveToCart(item, dispatch, auth);
-                        deleteRequestWishlist(item, dispatch, auth);
+                        moveToCart(item, dispatch, auth, toast);
+                        deleteRequestWishlist(item, dispatch, auth, toast);
                       }}
                       className="horizFooterBtnn"
                     >
