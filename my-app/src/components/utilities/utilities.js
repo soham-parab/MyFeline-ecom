@@ -165,10 +165,10 @@ export const incrementQuantity = (prd, dispatch, auth) => {
   }
 };
 
-export const decrementQuantity = (prd, dispatch, auth) => {
+export const decrementQuantity = (prd, dispatch, auth, toast) => {
   if (auth) {
     if (prd.quantity === 1) {
-      deleteRequestCart(prd, dispatch, auth);
+      deleteRequestCart(prd, dispatch, auth, toast);
     } else {
       (async function () {
         try {

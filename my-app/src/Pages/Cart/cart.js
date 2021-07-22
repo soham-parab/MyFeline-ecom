@@ -71,7 +71,7 @@ export function Cart() {
                         <span className="amt"> {item.quantity} </span>
                         <BsDashSquare
                           onClick={() =>
-                            decrementQuantity(item, dispatch, auth)
+                            decrementQuantity(item, dispatch, auth, toast)
                           }
                           className="icon-button-quantity"
                         />
