@@ -13,7 +13,6 @@ export function Wishlist() {
   const { toast } = useToast();
   const { auth } = useAuth();
   const { state, dispatch } = useProducts();
-  document.title = `${auth.userExists.name}'s wishlist`;
 
   useEffect(() => {
     (async function () {

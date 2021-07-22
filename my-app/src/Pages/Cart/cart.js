@@ -23,7 +23,6 @@ export function Cart() {
   const { auth } = useAuth();
   const { state, dispatch } = useProducts();
 
-  document.title = `${auth.userExists.name}'s cart`;
   useEffect(() => {
     (async function () {
       try {
