@@ -20,13 +20,97 @@ export const reducerFunction = (acc, action) => {
     case "PRICE_RANGE":
       return { ...acc, price_range: action.payload };
     case "RESET":
-      return { ...acc, sortBy: null, price_range: 0 };
+      return {
+        ...acc,
+        sortBy: null,
+        price_range: 0,
+        filters: {
+          stock: [],
+          FASTDELIVERY: [],
+          sortByBrand: [],
+          sortByType: [],
+        },
+      };
     case "IN STOCK":
       return {
         ...acc,
-        products: { ...acc.products },
-        stock: action.payload,
       };
+
+    case "SORT_BY_BRAND":
+      return acc.filters.sortByBrand.includes(action.payload)
+        ? {
+            ...acc,
+            filters: {
+              ...acc.filters,
+              sortByBrand: acc.filters.sortByBrand.filter(
+                (brand) => brand !== action.payload
+              ),
+            },
+          }
+        : {
+            ...acc,
+            filters: {
+              ...acc.filters,
+              sortByBrand: acc.filters.sortByBrand.concat(action.payload),
+            },
+          };
+
+    case "SORT_BY_CATEGORY":
+      return acc.filters.sortByType.includes(action.payload)
+        ? {
+            ...acc,
+            filters: {
+              ...acc.filters,
+              sortByType: acc.filters.sortByType.filter(
+                (Type) => Type !== action.payload
+              ),
+            },
+          }
+        : {
+            ...acc,
+            filters: {
+              ...acc.filters,
+              sortByType: acc.filters.sortByType.concat(action.payload),
+            },
+          };
+
+    case "SORT_BY_STOCK":
+      return acc.filters.stock.includes(action.payload)
+        ? {
+            ...acc,
+            filters: {
+              ...acc.filters,
+              stock: acc.filters.stock.filter(
+                (stock) => stock !== action.payload
+              ),
+            },
+          }
+        : {
+            ...acc,
+            filters: {
+              ...acc.filters,
+              stock: acc.filters.stock.concat(action.payload),
+            },
+          };
+
+    case "SORT_BY_DELIVERY":
+      return acc.filters.FASTDELIVERY.includes(action.payload)
+        ? {
+            ...acc,
+            filters: {
+              ...acc.filters,
+              FASTDELIVERY: acc.filters.FASTDELIVERY.filter(
+                (item) => item !== action.payload
+              ),
+            },
+          }
+        : {
+            ...acc,
+            filters: {
+              ...acc.filters,
+              FASTDELIVERY: acc.filters.FASTDELIVERY.concat(action.payload),
+            },
+          };
 
     default:
       break;

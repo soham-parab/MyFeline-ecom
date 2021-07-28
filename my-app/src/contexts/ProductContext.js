@@ -7,8 +7,13 @@ export function ProductsProvider({ children }) {
     products: [],
     cart: [],
     wishlist: [],
-    stock: false,
-    FASTDELIVERY: false,
+    filters: {
+      stock: [],
+      FASTDELIVERY: [],
+      sortByBrand: [],
+      sortByType: [],
+    },
+
     sortBy: null,
     RANGERVALUE: 1000,
     price_range: 0,

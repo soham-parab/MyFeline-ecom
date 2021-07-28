@@ -13,6 +13,8 @@ import "./products.css";
 import { useProducts } from "../../contexts/ProductContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { useToast } from "../../contexts/toastContext";
+import { getFilteredData } from "../../components/filters/DataFilters";
+import { Action } from "history";
 export function ProductListing() {
   const { auth } = useAuth();
   const { state, dispatch } = useProducts();
@@ -38,10 +40,13 @@ export function ProductListing() {
   let sortedData = getSortedData(state.products, state.sortBy);
   let priceRangeData = getPriceRangeData(sortedData, state.price_range);
 
+  let filteredData = getFilteredData(state, priceRangeData);
+
   return (
     <div className="productDiv">
       <div className="aside">
-        <h2>Filter Items</h2>
+        <h2 className="heading-two">Filter Items</h2>
+        <h3 className="heading-three"> Sort by Price</h3>
         <label className="radio-label">
           <input
             className="radio-buttons"
@@ -84,29 +89,86 @@ export function ProductListing() {
           />
         </label>
         <br />
+        <h3 className="heading-three">Categories</h3>
         <label>
           <input
-            onClick={() => dispatch({ type: "IN STOCK", payload: "true" })}
-            className=""
+            checked={state.filters.sortByType.includes("Kibble")}
+            onChange={() =>
+              dispatch({ type: "SORT_BY_CATEGORY", payload: "Kibble" })
+            }
             type="checkbox"
-            name="in_stock_only"
+            name="Kibble"
           />{" "}
-          In Stock Only
+          Kibble
         </label>
         <label>
-          <input type="checkbox" name="Treats" />
+          <input
+            checked={state.filters.sortByType.includes("Gravy Food")}
+            onChange={() =>
+              dispatch({ type: "SORT_BY_CATEGORY", payload: "Gravy Food" })
+            }
+            type="checkbox"
+            name="Gravy food."
+          />
+          Gravy food
+        </label>
+        <label>
+          <input
+            checked={state.filters.sortByType.includes("Treats")}
+            onChange={() =>
+              dispatch({ type: "SORT_BY_CATEGORY", payload: "Treats" })
+            }
+            type="checkbox"
+            name="Treats"
+          />
           Treats
         </label>
         <label>
-          <input type="checkbox" name="Accessories" />
+          <input
+            checked={state.filters.sortByType.includes("Misc")}
+            onChange={() =>
+              dispatch({ type: "SORT_BY_CATEGORY", payload: "Misc" })
+            }
+            type="checkbox"
+            name="Accessories"
+          />
           Accessories
         </label>
+        <h3 className="heading-three">Brands</h3>
         <label>
-          <input type="checkbox" name="Kibble." /> Kibble
+          <input
+            checked={state.filters.sortByBrand.includes("Royal Canin")}
+            onChange={() => {
+              dispatch({ type: "SORT_BY_BRAND", payload: "Royal Canin" });
+            }}
+            type="checkbox"
+            name="RoyalCanin"
+          />
+          Royal Canin
         </label>
         <label>
-          <input type="checkbox" name="Gravy food." />
-          Gravy food
+          <input
+            checked={state.filters.sortByBrand.includes("Whiskas")}
+            onChange={() => {
+              dispatch({ type: "SORT_BY_BRAND", payload: "Whiskas" });
+            }}
+            type="checkbox"
+            name="Whiskas"
+          />
+          Whiskas
+        </label>
+        <h3 className="heading-three">Delivery</h3>
+        <label>
+          <input
+            checked={state.filters.FASTDELIVERY.includes("true")}
+            onChange={() =>
+              dispatch({ type: "SORT_BY_DELIVERY", payload: "true" })
+            }
+            className=""
+            type="checkbox"
+            name="Fast Delivery Only"
+          />{" "}
+          Fast Delivery
         </label>
         <button
           className="reset-button"
@@ -117,8 +179,7 @@ export function ProductListing() {
       </div>
 
       <div className="card-parent">
-        {priceRangeData.map((item) => {
-          console.log(item._id);
+        {filteredData.map((item) => {
           return (
             <div className="cardSecondary">
               <Link to={`/productpage/${item._id}`}>

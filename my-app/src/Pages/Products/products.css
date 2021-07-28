@@ -18,18 +18,24 @@
   background-color: white;
 }
 
-h2 {
+.heading-two {
   align-self: center;
   margin-bottom: 1rem;
   color: var(--primary-color);
 }
 
+.heading-three {
+  align-self: center;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
 .aside {
   justify-content: top;
-  align-items: flex-start;
+  align-items: left;
   background-color: #f3f4f6;
   width: 15%;
-  padding: 1.5rem;
+  padding: 1.3rem;
   position: fixed;
   height: 90vh;
   top: 12vh;
@@ -66,16 +72,19 @@ h2 {
 
 .radio-buttons {
   cursor: pointer;
+  /* align-self: center; */
 }
 
 .radio-label {
   font-weight: 700;
   padding: 0.5rem;
+  /* align-self: center; */
 }
 
 .price-button {
   cursor: pointer;
   padding: 1rem 0;
+  align-self: center;
 }
 
 .product-title {
@@ -86,9 +95,10 @@ h2 {
 label {
   color: black;
   font-weight: bold;
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding: 0.5rem;
   margin: 0.2rem;
+  font-size: 0.9rem;
 }
 
 .icon-button:hover {

@@ -22,6 +22,39 @@ export function Login() {
   const [error, setError] = useState("");
   const [status, setStatus] = useState("idle");
 
+  async function loginHandlerDefault() {
+    try {
+      setStatus("loading");
+      const response = await axios.post(
+        "https://my-feline-rest-api.herokuapp.com/login",
+        {
+          email: "testuser@test.com",
+          password: "useruser",
+        }
+      );
+      if (!response.data.token) {
+        setStatus("idle");
+        setError(response.data);
+      } else {
+        setAuth(response.data);
+        setAuth((prev) => {
+          localStorage.setItem("auth", JSON.stringify(prev));
+          setStatus("idle");
+          return prev;
+        });
+        console.log(state);
+        navigate(state?.from ? state.from : "/");
+      }
+      toast("Logged In!", {
+        type: "success",
+      });
+    } catch (error) {
+      setStatus("idle");
+      setError(error.response.data);
+      console.log(error.response.data);
+    }
+  }
+
   async function loginHandler() {
     try {
       setStatus("loading");
@@ -88,6 +121,16 @@ export function Login() {
           onClick={loginHandler}
         >
           {status === "idle" && <span>Log In</span>}
+          {status === "loading" && <Spinner />}
+        </Button>
+
+        <Button
+          overflowY="hidden"
+          padding="1rem"
+          className="login-button"
+          onClick={loginHandlerDefault}
+        >
+          {status === "idle" && <span>Log In as a Test User instead.</span>}
           {status === "loading" && <Spinner />}
         </Button>
 
