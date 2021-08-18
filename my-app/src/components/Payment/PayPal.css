@@ -1,0 +1,24 @@
+iframe {
+  /* top: 28vh !important; */
+  /* width: 200px !important;
+  height: 200px !important; */
+  position: relative !important;
+  margin: 0 auto !important;
+}
+
+.paypal-div > div {
+  min-width: 500px !important;
+  max-width: 500px !important;
+  min-height: 30vh !important;
+  /* height: 100% !important; */
+  /* height: 60vh !important; */
+  overflow: hidden !important;
+}
+
+/* div [role="button"] {
+  display: none !important;
+} */
+
+.paypal-button-row.paypal-button-color-black .menu-button {
+  display: none !important;
+}
